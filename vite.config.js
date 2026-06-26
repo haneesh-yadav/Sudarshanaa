@@ -17,7 +17,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'jsdo',
     setupFiles: './src/test/setup.js',
     css: true,
   },
