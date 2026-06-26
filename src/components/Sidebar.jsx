@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SettingsPage from './Settings';
 import { useAuth } from '../auth/AuthContext';
@@ -37,7 +37,7 @@ export default function Sidebar({ active }) {
   const toggleExpanded = () => {
     setExpanded(prev => {
       const next = !prev;
-      try { localStorage.setItem(STORAGE_KEY, String(next)); } catch {}
+      try { localStorage.setItem(STORAGE_KEY, String(next)); } catch { /* ignore */ }
       return next;
     });
   };

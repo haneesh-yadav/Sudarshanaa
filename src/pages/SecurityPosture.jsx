@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
 
 /* Inline close icon -- doesn't depend on an icon font being loaded,
@@ -732,7 +732,7 @@ export default function SecurityPosturePage() {
           const mapped = data.map(mapReportToThread);
           setThreads(mapped);
         }
-      } catch (err) {
+      } catch {
         console.warn("Backend server offline.");
       }
     };

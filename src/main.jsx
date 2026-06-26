@@ -1,4 +1,4 @@
-﻿import { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
@@ -38,8 +38,7 @@ window.fetch = async (input, init) => {
     }
   }
 
-  try {
-    const response = await originalFetch(targetInput, init);
+  const response = await originalFetch(targetInput, init);
     
     // Automatically trigger logout on API 401 errors
     if (response.status === 401 && isApiCall && !targetInput.includes('/api/auth/')) {
@@ -53,9 +52,6 @@ window.fetch = async (input, init) => {
       window.location.href = '/';
     }
     return response;
-  } catch (error) {
-    throw error;
-  }
 };
 
 createRoot(document.getElementById('root')).render(

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
 import { showToast } from '../utils/toast';
 
@@ -273,7 +273,7 @@ function TopDomainsCard({ topDomains }) {
 
 function ExportControls({ onGenerate }) {
   const [format, setFormat] = useState("PDF");
-  const [range, setRange] = useState("Last 7 days");
+  const range = "Last 7 days";
   const formats = ["PDF", "CSV", "XLSX"];
 
   return (

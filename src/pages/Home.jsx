@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
 import { Link } from 'react-router-dom';
 
@@ -262,7 +262,7 @@ export default function Home() {
             .slice(0, 3);
           setWatchDomains(watch);
         }
-      } catch (err) {
+      } catch {
         console.warn("Backend server offline.");
       }
     };

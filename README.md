@@ -1,4 +1,4 @@
-﻿# Sudarshana
+# Sudarshana
 
 A full-stack email security platform that uses cryptographic hash chains, NLP-based threat detection, and email authentication analysis (SPF/DKIM/DMARC) to detect tampering, phishing, and social engineering attacks in email threads.
 

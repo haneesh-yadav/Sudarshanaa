@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../auth/AuthContext';
 import { showToast } from '../utils/toast';
 
@@ -200,21 +200,6 @@ function highlightMatch(label, query) {
    Shared helpers
    ============================================================ */
 
-function SettingsCard({ title, sub, children, actions }) {
-  return (
-    <div className="sp-card">
-      <div className="sp-card-head">
-        <div>
-          <div className="sp-card-title">{title}</div>
-          {sub && <div className="sp-card-sub">{sub}</div>}
-        </div>
-        {actions}
-      </div>
-      <div className="sp-card-body">{children}</div>
-    </div>
-  );
-}
-
 function Toggle({ on, onClick }) {
   return (
     <div className={"sp-switch" + (on ? " on" : "")} onClick={onClick}>
@@ -227,18 +212,9 @@ function Toggle({ on, onClick }) {
    General tab (was Profile)
    ============================================================ */
 
-const COUNTRY_CODES = [
-  { code: "+91", flag: "ðŸ‡®ðŸ‡³", name: "India" },
-  { code: "+1",  flag: "ðŸ‡ºðŸ‡¸", name: "United States" },
-  { code: "+44", flag: "ðŸ‡¬ðŸ‡§", name: "United Kingdom" },
-  { code: "+61", flag: "ðŸ‡¦ðŸ‡º", name: "Australia" },
-  { code: "+49", flag: "ðŸ‡©ðŸ‡ª", name: "Germany" },
-  { code: "+33", flag: "ðŸ‡«ðŸ‡·", name: "France" },
-  { code: "+81", flag: "ðŸ‡¯ðŸ‡µ", name: "Japan" },
-  { code: "+86", flag: "ðŸ‡¨ðŸ‡³", name: "China" },
-  { code: "+971", flag: "ðŸ‡¦ðŸ‡ª", name: "UAE" },
-  { code: "+65", flag: "ðŸ‡¸ðŸ‡¬", name: "Singapore" },
-];
+/* ============================================================
+   General tab (was Profile)
+   ============================================================ */
 
 function WorkSelect({ value, onChange }) {
   const [open, setOpen] = useState(false);
@@ -315,7 +291,7 @@ function GeneralTab({ settings }) {
             return;
           }
         }
-      } catch (_) {}
+      } catch { /* ignore */ }
       if (settings) {
         setFullName(settings.name || "");
         setEmail(settings.email || "");
@@ -417,7 +393,7 @@ function DeleteAccountModal({ onConfirm, onCancel }) {
         setLoading(false);
         return;
       }
-    } catch (_) {
+    } catch {
       setError('Network error. Check your connection.');
       setLoading(false);
       return;
@@ -556,7 +532,7 @@ function PrivacyFields() {
       } else {
         setError(data.message || "Failed to change password.");
       }
-    } catch (_) {
+    } catch {
       setError("Network error. Check your connection.");
     }
     setLoading(false);
@@ -1009,7 +985,7 @@ export default function SettingsPage({ open, onClose }) {
       try {
         const r = await fetch("/api/settings");
         if (r.ok) setSettings(await r.json());
-      } catch (_) {}
+      } catch { /* ignore */ }
     };
     if (open) fetchSettings();
   }, [open]);
@@ -1032,7 +1008,7 @@ export default function SettingsPage({ open, onClose }) {
         body: JSON.stringify(next),
       });
       if (r.ok) setSettings(await r.json());
-    } catch (_) {}
+    } catch { /* ignore */ }
   };
 
   if (!open) return null;

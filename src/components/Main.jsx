@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
@@ -15,31 +15,6 @@ import { useAuth } from '../auth/AuthContext';
  *   import LandingPage from './LandingPage';
  *   <Route path="/" element={<LandingPage />} />
  */
-
-const CAPABILITIES = [
-  { iconName: "psychology", label: "Behavioral NLP risk scoring" },
-  { iconName: "verified_user", label: "SPF / DKIM / DMARC enforcement", tone: "green" },
-  { iconName: "link", label: "SHA-256 chain validation", tone: "purple" },
-  { iconName: "bolt", label: "Real-time, no added latency", tone: "accent" },
-];
-
-const THREAT_POINTS = [
-  {
-    iconName: "person_search",
-    title: "Conversation hijacking",
-    desc: "Bad actors monitor or infiltrate compromised mail servers to locate ongoing, high-stakes threads with vendors, legal counsel, or executives.",
-  },
-  {
-    iconName: "psychology_alt",
-    title: "Psychological manipulation",
-    desc: "Once embedded, attackers introduce subtle shifts â€” artificial urgency, authority exploitation, or sudden routing/wire number changes.",
-  },
-  {
-    iconName: "block",
-    title: "The security gap",
-    desc: "Messages look like normal text and ride on existing trust, so SEGs trigger zero signature or link-based alarms.",
-  },
-];
 
 const LAYERS = [
   {
@@ -63,20 +38,6 @@ const LAYERS = [
     title: "Cryptographic thread locking",
     desc: "Each reply is hash-chained to its predecessor with SHA-256, making the conversation history tamper-evident.",
   },
-];
-
-const FLOW_STEPS = [
-  { step: "01", iconName: "forum", title: "Thread ingested" },
-  { step: "02", iconName: "psychology", title: "NLP risk pass" },
-  { step: "03", iconName: "fact_check", title: "Header guard" },
-  { step: "04", iconName: "link", title: "Chain validated" },
-  { step: "05", iconName: "shield", title: "Verdict issued" },
-];
-
-const ADVANTAGES = [
-  { iconName: "shield", title: "Zero-trust communication", desc: "Extends zero-trust beyond network access, directly into the text layer of corporate workflows." },
-  { iconName: "tune", title: "Reduced false positives", desc: "Linguistic, protocol, and cryptographic signal are combined so SOCs aren't drowned in ungrounded alerts." },
-  { iconName: "cloud_done", title: "Seamless integration", desc: "Deploys as a cloud-native API alongside Microsoft 365 and Google Workspace, with no added latency." },
 ];
 
 const FAQS = [
@@ -521,7 +482,7 @@ export default function LandingPage() {
       } else {
         setError('Could not verify email. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Connection to backend failed. Please ensure the server is running.');
     } finally {
       setCheckingEmail(false);
@@ -557,7 +518,7 @@ export default function LandingPage() {
         const data = await response.json();
         setError(data.message || 'Invalid credentials');
       }
-    } catch (err) {
+    } catch {
       setError('Connection to backend failed');
     }
   };
@@ -2533,7 +2494,7 @@ export default function LandingPage() {
         <div>
           <div className="shell">
             <div className="layers-list">
-              {LAYERS.map((l, i) => (
+              {LAYERS.map((l) => (
                 <div className="layer-row" key={l.title}>
                   <div className="layer-row-left">
                     <Icon name={l.iconName} className="layer-row-icon" />

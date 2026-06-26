@@ -9,7 +9,7 @@ google:
 sudarshana:
   security:
     jwt:
-      secret: ${SUDARSHANA_JWT_SECRET}
+      secret: ${SUDARSHANA_JWT_SECRET:test-secret-for-ci-only}
   sync:
     limit: 20
 

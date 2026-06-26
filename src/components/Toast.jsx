@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const TYPE_STYLES = {
   info:    { bg: 'rgba(96,165,250,0.12)',  border: 'rgba(96,165,250,0.35)',  icon: 'info',           color: '#60a5fa' },

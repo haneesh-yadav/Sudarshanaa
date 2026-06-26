@@ -1,4 +1,4 @@
-﻿export default function mapReportToThread(report) {
+export default function mapReportToThread(report) {
   const lastMsg = report.messages[report.messages.length - 1];
 
   let status = "Verified";

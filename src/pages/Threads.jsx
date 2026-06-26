@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
 import { createPortal } from 'react-dom';
 import { showToast } from '../utils/toast.js';
@@ -862,7 +862,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
       } else {
         return { ip: "185.190.4.99", isp: "Hosting Provider", ssl: "Valid Let's Encrypt SSL (HTTP/2)", isSafeSsl: true };
       }
-    } catch (e) {
+    } catch {
       return { ip: "185.190.4.99", isp: "Unknown Hosting", ssl: "No SSL Certificate", isSafeSsl: false };
     }
   };
@@ -1160,7 +1160,7 @@ export default function ThreadsPage() {
           cleanUrl = "http://" + cleanUrl;
         }
         domain = new URL(cleanUrl).hostname;
-      } catch (e) {}
+      } catch { /* ignore */ }
 
       const userId = localStorage.getItem("selectedUserId") || "";
       const url = `/api/threads/blacklist${userId ? `?userId=${userId}` : ""}`;

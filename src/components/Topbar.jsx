@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../utils/toast.js';
 
@@ -26,13 +26,9 @@ export const DEFAULT_STATS = [
   { iconName: "schedule", label: "Quarantined", value: "4" },
 ];
 
-const DEFAULT_USER = { initials: "HY", name: "Haneesh Yadav", role: "SOC Analyst" };
-
 export default function Topbar({
   title = "Dashboard",
   searchPlaceholder = "Search threads, senders, or domains...",
-  user = DEFAULT_USER,
-  notificationCount = "+8",
 }) {
   const today = new Date().toLocaleDateString(undefined, {
     weekday: "long",

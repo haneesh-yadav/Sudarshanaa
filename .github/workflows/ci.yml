@@ -74,3 +74,4 @@ jobs:
           SPRING_DATASOURCE_USERNAME: postgres
           SPRING_DATASOURCE_PASSWORD: postgres
           SPRING_PROFILES_ACTIVE: postgres
+          SUDARSHANA_JWT_SECRET: ci-test-secret-do-not-use-in-production
