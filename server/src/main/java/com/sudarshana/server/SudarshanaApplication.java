@@ -15,36 +15,10 @@ public class SudarshanaApplication {
 
     public static void main(String[] args) {
         loadEnvFile();
-        fixDataSourceUrl();
         SpringApplication.run(SudarshanaApplication.class, args);
     }
 
-    private static void fixDataSourceUrl() {
-        String url = System.getenv("SPRING_DATASOURCE_URL");
-        if (url == null || url.isEmpty()) {
-            url = System.getenv("DATABASE_URL");
-        }
-        if (url != null && !url.isEmpty() && !url.startsWith("jdbc:")) {
-            System.setProperty("spring.datasource.url", "jdbc:" + url);
-        }
-        String user = System.getenv("SPRING_DATASOURCE_USERNAME");
-        if (user == null || user.isEmpty()) {
-            user = System.getenv("PGUSER");
-        }
-        if (user != null && !user.isEmpty()) {
-            System.setProperty("spring.datasource.username", user);
-        }
-        String pass = System.getenv("SPRING_DATASOURCE_PASSWORD");
-        if (pass == null || pass.isEmpty()) {
-            pass = System.getenv("PGPASSWORD");
-        }
-        if (pass != null && !pass.isEmpty()) {
-            System.setProperty("spring.datasource.password", pass);
-        }
-    }
-
     private static void loadEnvFile() {
-        // Look for .env in the current directory or parent directory
         Path envPath = Paths.get(".env");
         if (!Files.exists(envPath)) {
             envPath = Paths.get("../.env");
@@ -62,7 +36,6 @@ public class SudarshanaApplication {
                     if (eqIdx > 0) {
                         String key = line.substring(0, eqIdx).trim();
                         String val = line.substring(eqIdx + 1).trim();
-                        // Remove surrounding quotes if any
                         if (val.startsWith("\"") && val.endsWith("\"")) {
                             val = val.substring(1, val.length() - 1);
                         } else if (val.startsWith("'") && val.endsWith("'")) {
@@ -80,5 +53,3 @@ public class SudarshanaApplication {
         }
     }
 }
-
-

@@ -32,9 +32,9 @@ spring:
     activate:
       on-profile: h2
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/sudarshana;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
-    username: ${SPRING_DATASOURCE_USERNAME:sa}
-    password: ${SPRING_DATASOURCE_PASSWORD:}
+    url: jdbc:h2:file:./data/sudarshana;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
     driver-class-name: org.h2.Driver
     hikari:
       maximum-pool-size: 10
@@ -56,7 +56,7 @@ spring:
     activate:
       on-profile: postgres
   datasource:
-    url: jdbc:${SPRING_DATASOURCE_URL}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
