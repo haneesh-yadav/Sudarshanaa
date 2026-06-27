@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: sudarshana-server
+    runtime: java
+    region: oregon
+    plan: free
+    rootDir: server
+    buildCommand: mvn -B compile
+    startCommand: mvn -B spring-boot:run -Dspring-boot.run.profiles=postgres
+    healthCheckPath: /api/health
+    envVars:
+      - key: JAVA_VERSION
+        value: "17"
+      - key: SPRING_PROFILES_ACTIVE
+        value: postgres
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: sudarshana-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: sudarshana-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: sudarshana-db
+          property: password
+      - key: SUDARSHANA_JWT_SECRET
+        generateValue: true
+      - key: SUDARSHANA_ENCRYPTION_KEY
+        generateValue: true
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://sudarshana.vercel.app
+
+databases:
+  - name: sudarshana-db
+    plan: free
+    databaseName: sudarshana
+    ipAllowList: []
