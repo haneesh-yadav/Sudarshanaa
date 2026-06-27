@@ -226,11 +226,11 @@ function LinkDiagnostics({ links, onLaunchSandbox }) {
       </div>
       
       {open && (
-        <div className="diag-details-expanded" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '8px 10px' }}>
+        <div className="diag-details-expanded" style={{ borderTop: '1px solid var(--border)', padding: '8px 10px' }}>
           {links.map((link, idx) => (
             <React.Fragment key={idx}>
               {idx > 0 && (
-                <div style={{ borderTop: '1px dashed rgba(255,255,255,0.08)', margin: '8px 0' }} />
+                <div style={{ borderTop: '1px dashed var(--border)', margin: '8px 0' }} />
               )}
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--accent)', wordBreak: 'break-all' }}>
@@ -240,7 +240,7 @@ function LinkDiagnostics({ links, onLaunchSandbox }) {
                   Status: {link.status} (Reputation Score: {Math.round(link.reputationScore)}%)
                 </div>
                 {link.notes && link.notes.map((note, nIdx) => (
-                  <div key={nIdx} className="diag-detail-log-item info" style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', gap: 4, marginTop: 2 }}>
+                  <div key={nIdx} className="diag-detail-log-item info" style={{ fontSize: 10.5, color: 'var(--text-dim)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', gap: 4, marginTop: 2 }}>
                     <span className="material-icons-round" style={{ fontSize: 11, color: note.includes("ALERT") || note.includes("HIT") ? "var(--orange)" : "var(--green)", marginTop: 1 }}>
                       {note.includes("ALERT") || note.includes("HIT") ? "warning" : "check_circle"}
                     </span>
@@ -334,12 +334,12 @@ function AttachmentSandbox({ attachments }) {
                 </span>
               </div>
               
-              <div style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.4)', marginTop: 4, marginBottom: 4 }}>
+              <div style={{ fontSize: 9.5, color: 'var(--text-dimmer)', marginTop: 4, marginBottom: 4 }}>
                 SHA-256: <code style={{ color: 'var(--accent)', fontSize: 9.5 }}>{att.sha256Hash}</code>
               </div>
               
               {((att.highRiskPermissions && att.highRiskPermissions.length > 0) || (att.networkTraces && att.networkTraces.length > 0)) && (
-                <div style={{ borderTop: '1px dashed rgba(255,255,255,0.08)', margin: '8px 0' }} />
+                <div style={{ borderTop: '1px dashed var(--border)', margin: '8px 0' }} />
               )}
               
               {att.highRiskPermissions && att.highRiskPermissions.length > 0 && (
@@ -349,7 +349,7 @@ function AttachmentSandbox({ attachments }) {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                     {att.highRiskPermissions.map((perm, pIdx) => (
-                      <div key={pIdx} style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <div key={pIdx} style={{ fontSize: 10, color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <span className="material-icons-round" style={{ fontSize: 10, color: 'var(--red)' }}>error_outline</span>
                         <code>{perm}</code>
                       </div>
@@ -361,14 +361,14 @@ function AttachmentSandbox({ attachments }) {
               {att.networkTraces && att.networkTraces.length > 0 && (
                 <div style={{ marginTop: 8 }}>
                   {att.highRiskPermissions && att.highRiskPermissions.length > 0 && (
-                    <div style={{ borderTop: '1px dashed rgba(255,255,255,0.08)', margin: '8px 0' }} />
+                    <div style={{ borderTop: '1px dashed var(--border)', margin: '8px 0' }} />
                   )}
                   <div style={{ fontSize: 10.5, fontWeight: 600, color: 'var(--red)', marginBottom: 2 }}>
                     C&C Network Callouts:
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                     {att.networkTraces.map((domain, dIdx) => (
-                      <div key={dIdx} style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <div key={dIdx} style={{ fontSize: 10, color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <span className="material-icons-round" style={{ fontSize: 10, color: 'var(--red)' }}>wifi_tethering_off</span>
                         <code style={{ wordBreak: 'break-all' }}>{domain}</code>
                       </div>
@@ -458,7 +458,7 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
           position: 'relative',
           width: 1580, maxWidth: '200vw',
           height: '120vh', maxHeight: '150vh',
-            background: '#1c1c1e', border: '1px solid #333',
+            background: 'var(--panel)', border: '1px solid var(--border)',
             borderRadius: 16,
             boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
             display: 'flex', flexDirection: 'column',
@@ -478,7 +478,7 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
             style={{
               width: 30, height: 30, borderRadius: 999,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: '#2a2a2d', border: '1px solid #3a3a3d',
+              background: 'var(--panel-3)', border: '1px solid var(--border-2)',
               flexShrink: 0, cursor: 'pointer',
             }}
           ><CloseIcon /></button>
@@ -495,13 +495,13 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
             flex: '1 1 0%',
             display: 'grid', gridTemplateColumns: '500px 1fr',
             gap: '0',
-            marginTop: 18, border: '1px solid #2e2e31', borderRadius: 12,
-            overflow: 'hidden', background: '#121214',
+            marginTop: 18, border: '1px solid var(--border)', borderRadius: 12,
+            overflow: 'hidden', background: 'var(--bg)',
             minHeight: 0
           }}
         >
           {/* LEFT PANEL: Trust Signals, Crypto Lock, Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', borderRight: '1px solid #2e2e31', background: '#1c1c1e', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', borderRight: '1px solid var(--border)', background: 'var(--panel)', overflow: 'hidden' }}>
             <div style={{ flex: 1, overflowY: 'auto' }}>
               <div style={{ padding: '18px 20px' }}>
                 <div className="drawer-section-title">Multi-layer trust signals</div>
@@ -519,7 +519,7 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
                 )}
               </div>
 
-              <div style={{ padding: '18px 20px', borderTop: '1px solid #2e2e31' }}>
+              <div style={{ padding: '18px 20px', borderTop: '1px solid var(--border)' }}>
                 <div className="drawer-section-title">Cryptographic thread lock</div>
                 <div className="hashline">
                   {Array.from({ length: timeline.length }).map((_, i) => {
@@ -542,8 +542,8 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
             </div>
             
             <div style={{
-              height: '72px', padding: '0 20px', borderTop: '1px solid #2e2e31',
-              background: '#18181a', display: 'flex', alignItems: 'center',
+              height: '72px', padding: '0 20px', borderTop: '1px solid var(--border)',
+              background: 'var(--panel-2)', display: 'flex', alignItems: 'center',
               boxSizing: 'border-box'
             }}>
               <button
@@ -563,7 +563,7 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
           </div>
 
           {/* RIGHT PANEL: WhatsApp-style Chat Area */}
-          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#121214', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--bg)', overflow: 'hidden' }}>
             {/* Scrollable messages container */}
             <div
               className="chat-messages-container"
@@ -617,8 +617,8 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
 
             {/* Docked chat input row */}
             <div style={{
-              padding: '16px 20px', borderTop: '1px solid #2e2e31',
-              background: '#1c1c1e', display: 'flex', flexDirection: 'column',
+              padding: '16px 20px', borderTop: '1px solid var(--border)',
+              background: 'var(--panel)', display: 'flex', flexDirection: 'column',
               gap: '6px', boxSizing: 'border-box'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '100%' }}>
@@ -638,8 +638,8 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
                     minHeight: '42px',
                     maxHeight: '120px',
                     padding: '10px 16px',
-                    background: 'rgba(255,255,255,0.04)',
-                    border: activeLeak ? '1px solid #e8543f' : '1px solid rgba(255,255,255,0.08)',
+                    background: 'var(--panel-2)',
+                    border: activeLeak ? '1px solid #e8543f' : '1px solid var(--border)',
                     borderRadius: '20px',
                     color: 'var(--text)',
                     fontFamily: 'inherit',
@@ -926,7 +926,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
 
   return createPortal(
     <div className="modal-backdrop" style={{ zIndex: 12000 }} onClick={onClose}>
-      <div className="modal-content" style={{ width: "950px", border: "1px solid #333", maxHeight: "90vh", overflow: "hidden", display: "flex", flexDirection: "column" }} onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content" style={{ width: "950px", border: "1px solid var(--border)", maxHeight: "90vh", overflow: "hidden", display: "flex", flexDirection: "column" }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2 className="modal-title" style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--text)" }}>
             <span className="material-icons-round" style={{ color: loadingStage === 3 ? ratingColor : 'var(--accent)' }}>
@@ -949,7 +949,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", background: "rgba(255, 255, 255, 0.02)", border: "1px solid var(--border-2)", borderRadius: "12px", padding: "20px" }}>
                 <div className="sandbox-spinner" style={{
-                  width: "36px", height: "36px", border: "3px solid rgba(255,255,255,0.05)",
+                    width: "36px", height: "36px", border: "3px solid var(--border)",
                   borderTop: "3px solid var(--accent)", borderRadius: "50%"
                 }} />
                 <div>
@@ -965,7 +965,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
               </div>
 
               <div style={{
-                background: "#0c0c0e", border: "1px solid #222", borderRadius: "12px",
+                background: "var(--bg)", border: "1px solid var(--border)", borderRadius: "12px",
                 padding: "20px", fontFamily: "'Courier New', Courier, monospace", fontSize: "12px",
                 color: "#74e08a", minHeight: "220px", display: "flex", flexDirection: "column", gap: "6px",
                 boxShadow: "inset 0 0 10px rgba(0,0,0,0.8)", overflowY: "auto"
@@ -982,9 +982,9 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <div style={{ fontSize: "12px", fontWeight: "600", textTransform: "uppercase", color: "var(--text-dimmer)" }}>Virtualized Visual Output</div>
                 
-                <div style={{ border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", background: "#1c1c1f", boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}>
+                <div style={{ border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", background: "var(--panel)", boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}>
                   
-                  <div style={{ height: "36px", background: "#252528", borderBottom: "1px solid var(--border)", padding: "0 12px", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div style={{ height: "36px", background: "var(--panel-2)", borderBottom: "1px solid var(--border)", padding: "0 12px", display: "flex", alignItems: "center", gap: "10px" }}>
                     <div style={{ display: "flex", gap: "6px" }}>
                       <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ef6a5f" }} />
                       <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#f0a13c" }} />
@@ -995,7 +995,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                       <span className="material-icons-round" style={{ fontSize: "14px" }}>arrow_forward</span>
                     </div>
                     <div style={{
-                      flex: 1, background: "#151517", borderRadius: "6px", height: "24px",
+                      flex: 1, background: "var(--bg)", borderRadius: "6px", height: "24px",
                       display: "flex", alignItems: "center", padding: "0 10px", gap: "6px",
                       fontSize: "11px", color: ratingColor, overflow: "hidden"
                     }}>
@@ -1004,7 +1004,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                     </div>
                   </div>
 
-                  <div style={{ position: "relative", width: "100%", background: "#121214", minHeight: "260px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ position: "relative", width: "100%", background: "var(--bg)", minHeight: "260px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img 
                       src={screenshotError ? screenshotSrc : imgUrl} 
                       alt="Sandbox Preview" 
@@ -1014,7 +1014,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                     <div style={{
                       position: "absolute", bottom: "10px", right: "10px",
                       background: "rgba(0,0,0,0.85)", padding: "4px 8px", borderRadius: "4px",
-                      fontSize: "10px", color: "var(--text-dimmer)", border: "1px solid rgba(255,255,255,0.1)"
+                      fontSize: "10px", color: "var(--text-dimmer)", border: "1px solid var(--border)"
                     }}>
                       Safe isolated DOM render
                     </div>
@@ -1047,7 +1047,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                   <div style={{ fontSize: "12px", fontWeight: "600", textTransform: "uppercase", color: "var(--text-dimmer)" }}>Network & Host Diagnostics</div>
                   <div style={{
-                    background: "rgba(255, 255, 255, 0.02)", border: "1px solid var(--border-2)",
+                    background: "var(--panel-2)", border: "1px solid var(--border-2)",
                     borderRadius: "12px", padding: "16px", display: "flex", flexDirection: "column", gap: "12px"
                   }}>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12.5px" }}>
@@ -1074,7 +1074,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     {link.notes && link.notes.map((note, i) => (
                       <div key={i} style={{
-                        display: "flex", gap: "8px", background: "rgba(0,0,0,0.15)",
+                        display: "flex", gap: "8px", background: "var(--panel-2)",
                         border: "1px solid var(--border-2)", borderRadius: "8px", padding: "10px 12px", fontSize: "12px"
                       }}>
                         <span className="material-icons-round" style={{ color: ratingColor, fontSize: "16px", marginTop: "1px" }}>warning</span>
@@ -1083,7 +1083,7 @@ function LinkSandboxModal({ link, onClose, onAddToBlacklist }) {
                     ))}
                     {isHomoglyph && (
                       <div style={{
-                        display: "flex", gap: "8px", background: "rgba(0,0,0,0.15)",
+                        display: "flex", gap: "8px", background: "var(--panel-2)",
                         border: "1px solid var(--border-2)", borderRadius: "8px", padding: "10px 12px", fontSize: "12px"
                       }}>
                         <span className="material-icons-round" style={{ color: "var(--red)", fontSize: "16px", marginTop: "1px" }}>warning</span>
@@ -1420,10 +1420,10 @@ export default function ThreadsPage() {
         .tab:hover{ color: var(--text); }
         .tab.active{ background: var(--panel-3); color: var(--text); }
         .tab b{
-          background: rgba(255,255,255,0.10); color: var(--text);
+          background: var(--panel-3); color: var(--text);
           font-size:11px; font-weight:600; padding:1px 7px; border-radius:999px;
         }
-        .tab.active b{ background:#111; color:var(--text); }
+        .tab.active b{ background: var(--panel); color:var(--text); }
         .filter-icon-btn{
           width:34px; height:34px; border-radius:999px;
           background: var(--panel); border:1px solid var(--border);
@@ -1442,13 +1442,21 @@ export default function ThreadsPage() {
           border:1px solid var(--border);
           border-radius: var(--radius-lg);
           background: var(--panel);
+          /* styled horizontal scrollbar */
+          scrollbar-width: thin;
+          scrollbar-color: var(--border-2, rgba(255,255,255,0.18)) transparent;
         }
+        .table-wrap::-webkit-scrollbar{ height:5px; width:5px; }
+        .table-wrap::-webkit-scrollbar-track{ background: transparent; }
+        .table-wrap::-webkit-scrollbar-thumb{ background: var(--border-2, rgba(255,255,255,0.18)); border-radius:999px; }
+        .table-wrap::-webkit-scrollbar-thumb:hover{ background: var(--text-dimmer); }
         .t-row{
           display:grid;
           grid-template-columns: 150px 1fr 180px 150px 110px 64px 110px;
           align-items:center;
           gap:14px;
           padding:13px 18px;
+          min-width: 860px; /* prevents columns from squishing; enables x-scroll */
         }
         .t-head{
           font-size:11.5px; text-transform:uppercase; letter-spacing:.04em;
@@ -1483,7 +1491,7 @@ export default function ThreadsPage() {
         .c-domain{ font-size:12.5px; color: var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
         .trust-cell{ display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600; }
-        .trust-track{ width:54px; height:6px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+        .trust-track{ width:54px; height:6px; border-radius:999px; background:var(--border); overflow:hidden; }
         .trust-fill{ height:100%; border-radius:999px; }
 
         .c-chain .chain-ok, .c-chain .chain-bad{
@@ -1499,8 +1507,16 @@ export default function ThreadsPage() {
         .empty-state{ padding:40px; text-align:center; color: var(--text-dimmer); font-size:13px; }
 
         @media (max-width: 1100px){
-          .t-row{ grid-template-columns: 120px 1fr 140px 0 0 0 90px; }
-          .c-domain, .c-trust, .c-chain, .c-msgs{ display:none; }
+          .t-row{ grid-template-columns: 150px 1fr 180px 150px 110px 64px 110px; }
+          .c-domain, .c-trust, .c-chain, .c-msgs{ display:unset; }
+        }
+        @media (max-width: 700px){
+          .filter-row{ flex-direction: column; align-items: stretch; gap: 10px; }
+          .tabs{ flex-wrap: wrap; border-radius: 14px; }
+          .tab{ font-size: 12px; padding: 6px 10px; }
+          .toggles{ justify-content: flex-end; }
+          .table-wrap{ border-radius: 12px; }
+          /* full columns kept — user scrolls horizontally */
         }
 
         /* ---------------- drawer / modal ---------------- */
@@ -1554,7 +1570,7 @@ export default function ThreadsPage() {
           white-space: nowrap;
         }
         .signal-label .material-icons-round{ font-size:13px; flex-shrink:0; }
-        .signal-track{ flex:1; height:6px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+        .signal-track{ flex:1; height:6px; border-radius:999px; background:var(--border); overflow:hidden; }
         .signal-fill{ height:100%; border-radius:999px; }
         .signal-val{ width:36px; text-align:right; font-size:12px; font-weight:700; }
 
@@ -1594,8 +1610,8 @@ export default function ThreadsPage() {
         .tl-header-details {
           margin-top: 10px;
           padding: 10px 12px;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          background: var(--panel-2);
+          border: 1px solid var(--border);
           border-radius: 8px;
           font-family: inherit;
         }
@@ -1628,7 +1644,7 @@ export default function ThreadsPage() {
         .diag-notes {
           margin-top: 6px;
           padding-top: 6px;
-          border-top: 1px dashed rgba(255,255,255,0.06);
+          border-top: 1px dashed var(--border);
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -1671,10 +1687,10 @@ export default function ThreadsPage() {
           gap: 6px;
         }
         .chat-bubble-row.incoming .chat-bubble {
-          background: #1c1c1e;
-          border: 1px solid rgba(255,255,255,0.06);
+          background: var(--panel);
+          border: 1px solid var(--border);
           border-top-left-radius: 2px;
-          color: #f2f2f7;
+          color: var(--text);
         }
         .chat-bubble-row.outgoing .chat-bubble {
           background: #1e3a8a;
@@ -1685,7 +1701,7 @@ export default function ThreadsPage() {
         .chat-bubble-sender {
           font-size: 11px;
           font-weight: 700;
-          color: #facc15; /* Yellow highlight for sender */
+          color: #facc15;
           letter-spacing: 0.02em;
           text-align: left;
         }
@@ -1707,16 +1723,16 @@ export default function ThreadsPage() {
         }
         .chat-bubble-time {
           font-size: 10px;
-          color: rgba(255,255,255,0.4);
+          color: var(--text-dimmer);
         }
         
         /* Diagnostics Inside Bubbles */
         .bubble-diagnostics {
           margin-top: 4px;
           border-radius: 8px;
-          border: 1px solid rgba(255,255,255,0.05);
+          border: 1px solid var(--border);
           overflow: hidden;
-          background: rgba(0, 0, 0, 0.2);
+          background: var(--panel-2);
         }
         .diag-summary-pill {
           display: flex;
@@ -1728,7 +1744,7 @@ export default function ThreadsPage() {
           transition: background 0.15s ease;
         }
         .diag-summary-pill:hover {
-          background: rgba(255,255,255,0.04);
+          background: var(--panel-3);
         }
         .bubble-diagnostics.clean .diag-summary-pill .icon {
           color: var(--green);
@@ -1751,12 +1767,12 @@ export default function ThreadsPage() {
         }
         .diag-summary-pill .arrow-icon {
           font-size: 14px;
-          color: rgba(255,255,255,0.4);
+          color: var(--text-dimmer);
         }
         
         .diag-details-expanded {
           padding: 8px 10px;
-          border-top: 1px solid rgba(255,255,255,0.06);
+          border-top: 1px solid var(--border);
           display: flex;
           flex-direction: column;
           gap: 6px;
@@ -1772,7 +1788,7 @@ export default function ThreadsPage() {
           font-size: 11px;
         }
         .diag-detail-row .lbl {
-          color: rgba(255,255,255,0.4);
+          color: var(--text-dimmer);
         }
         .diag-detail-row .val {
           font-weight: 600;
@@ -1784,7 +1800,7 @@ export default function ThreadsPage() {
           display: flex;
           flex-direction: column;
           gap: 4px;
-          border-top: 1px dashed rgba(255,255,255,0.08);
+          border-top: 1px dashed var(--border);
           padding-top: 6px;
           margin-top: 2px;
         }
@@ -1795,7 +1811,7 @@ export default function ThreadsPage() {
           gap: 4px;
           line-height: 1.35;
         }
-        .diag-detail-log-item.info { color: rgba(255,255,255,0.6); }
+        .diag-detail-log-item.info { color: var(--text-dim); }
         .diag-detail-log-item.alert { color: var(--orange); }
         .diag-detail-log-item .font-icon {
           font-size: 12px;
@@ -1833,14 +1849,14 @@ export default function ThreadsPage() {
           width: 6px;
         }
         .chat-messages-container::-webkit-scrollbar-track {
-          background: rgba(0, 0, 0, 0.1);
+          background: var(--panel-2);
         }
         .chat-messages-container::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.12);
+          background: var(--border-2);
           border-radius: 999px;
         }
         .chat-messages-container::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.22);
+          background: var(--text-dimmer);
         }
 
         .drawer-actions{ display:flex; flex-direction:column; gap:10px; margin-top:24px; padding-top:18px; border-top:1px solid var(--border); }
@@ -1935,6 +1951,13 @@ export default function ThreadsPage() {
           padding: 16px 24px;
           border-top: 1px solid var(--border-2);
           margin-top: 20px;
+        }
+        @media (max-width: 700px){
+          .drawer{ padding: 16px; max-width: 100vw; }
+          .signal-label{ flex: 0 0 160px; font-size: 11px; }
+          .drawer-title{ font-size: 14px; }
+          .modal-footer{ flex-direction: column; }
+          .modal-footer button{ width: 100%; }
         }
       `}</style>
       <div className="threads-page-root">
@@ -2041,5 +2064,3 @@ export default function ThreadsPage() {
     </>
   );
 }
-
-

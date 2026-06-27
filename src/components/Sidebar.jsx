@@ -137,6 +137,17 @@ export default function Sidebar({ active }) {
           .sb-btn.collapse-btn:hover{ background: var(--panel-3); color: var(--text); }
           .sb-btn.collapse-btn .material-icons-round{ transition: transform .22s ease; }
           .sidebar.expanded .sb-btn.collapse-btn .material-icons-round{ transform: rotate(180deg); }
+
+          @media (max-width: 700px){
+            .sidebar{ width:54px !important; }
+            .sidebar.expanded{ width:54px !important; align-items:center; }
+            .sidebar-wordmark{ display:none !important; opacity:0 !important; max-width:0 !important; }
+            .sb-label{ display:none !important; opacity:0 !important; max-width:0 !important; }
+            .sidebar.expanded .sb-btn{ width:38px !important; padding:0 10px !important; gap:0 !important; }
+            .sidebar.expanded .sidebar-nav{ padding:0 !important; align-items:center !important; }
+            .sidebar.expanded .sidebar-bottom{ padding-left:0 !important; padding-right:0 !important; align-items:center !important; }
+            .sidebar-logo-row{ padding:0 10px 16px !important; gap:0 !important; }
+          }
         `}</style>
 
         <div className="sidebar-logo-row">

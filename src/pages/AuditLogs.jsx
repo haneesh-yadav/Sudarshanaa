@@ -138,13 +138,20 @@ export default function AuditLogsPage() {
           border:1px solid var(--border);
           border-radius: var(--radius-lg, 16px);
           background: var(--panel);
+          scrollbar-width: thin;
+          scrollbar-color: var(--border-2, rgba(255,255,255,0.18)) transparent;
         }
+        .table-wrap::-webkit-scrollbar{ height:5px; width:5px; }
+        .table-wrap::-webkit-scrollbar-track{ background: transparent; }
+        .table-wrap::-webkit-scrollbar-thumb{ background: var(--border-2, rgba(255,255,255,0.18)); border-radius:999px; }
+        .table-wrap::-webkit-scrollbar-thumb:hover{ background: var(--text-dimmer); }
         .t-row{
           display:grid;
           grid-template-columns: 190px 220px 200px 1fr;
           align-items:center;
           gap:14px;
           padding:13px 18px;
+          min-width: 720px;
         }
         .t-head{
           font-size:11.5px; text-transform:uppercase; letter-spacing:.04em;
@@ -175,9 +182,12 @@ export default function AuditLogsPage() {
         .empty-state{ padding:40px; text-align:center; color: var(--text-dimmer); font-size:13px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
         .empty-icon{ font-size: 36px; color: var(--text-dimmer); }
 
-        @media (max-width: 900px){
-          .t-row{ grid-template-columns: 140px 1fr 140px 0; }
-          .detail-cell{ display:none; }
+        @media (max-width: 640px){
+          .filter-row{ flex-direction: column; align-items: stretch; gap: 10px; }
+          .tabs{ flex-wrap: wrap; border-radius: 14px; }
+          .tab{ font-size: 12px; padding: 6px 10px; }
+          .table-wrap{ border-radius: 12px; }
+          .toggles{ justify-content: flex-end; }
         }
       `}</style>
 

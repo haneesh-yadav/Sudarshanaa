@@ -437,6 +437,17 @@ export default function Home() {
         @media (max-width: 1100px){
           .dash-grid{ grid-template-columns: 1fr; }
         }
+        @media (max-width: 640px){
+          .kpi-strip{ flex-wrap: wrap; gap: 8px; }
+          .kpi-card{ flex: calc(50% - 4px); min-width: calc(50% - 4px); padding: 14px 16px; gap: 12px; }
+          .kpi-value{ font-size: 20px; }
+          .kpi-icon{ width: 38px; height: 38px; border-radius: 10px; }
+          .kpi-icon .material-icons-round{ font-size: 16px; }
+          .page-header{ flex-direction: column; align-items: flex-start; gap: 8px; }
+          .feed-card-head{ flex-direction: column; gap: 8px; }
+          .see-all-link{ align-self: flex-start; }
+          .watch-meta{ flex-direction: column; align-items: flex-end; gap: 2px; }
+        }
       `}</style>
 
       <StatsBar stats={stats} />
@@ -454,4 +465,3 @@ export default function Home() {
     </>
   );
 }
-

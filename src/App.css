@@ -227,7 +227,7 @@ textarea:focus-visible,
   color: var(--text);
 }
 .tab b {
-  background: rgba(255,255,255,0.10);
+  background: var(--panel-3);
   color: var(--text);
   font-size: 11px;
   font-weight: 600;
@@ -235,7 +235,7 @@ textarea:focus-visible,
   border-radius: 999px;
 }
 .tab.active b {
-  background: #111;
+  background: var(--panel);
   color: var(--text);
 }
 .filter-icon-btn {

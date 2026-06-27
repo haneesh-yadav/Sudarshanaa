@@ -38,6 +38,22 @@ export default function Topbar({
   });
 
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+    };
+    const handleEsc = (e) => { if (e.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [menuOpen]);
   const [searchVal, setSearchVal] = React.useState(() => {
     return localStorage.getItem("tg-search-query") || "";
   });
@@ -609,9 +625,76 @@ export default function Topbar({
           to { transform: translateY(0); opacity: 1; }
         }
 
+        /* hamburger button */
+        .tb-hamburger{
+          display:none;
+          width:38px; height:38px; border-radius:999px;
+          background: transparent; border:none;
+          align-items:center; justify-content:center;
+          color: var(--text-dim); cursor:pointer;
+          transition: background .15s ease, color .15s ease;
+          flex-shrink:0;
+        }
+        .tb-hamburger:hover{ background: var(--panel-3); color: var(--text); }
+        .tb-hamburger .material-icons-round{ font-size:20px; }
+
+        /* mobile dropdown from hamburger */
+        .tb-mobile-menu{
+          position: absolute;
+          top: calc(100% + 8px);
+          right: 0;
+          min-width: 260px;
+          background: var(--panel);
+          border: 1px solid var(--border-2, rgba(255,255,255,0.1));
+          border-radius: var(--radius-lg, 14px);
+          box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+          z-index: 300;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          animation: notifSlide .22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tb-mobile-section{
+          display:flex; flex-direction:column; gap:2px;
+          padding-bottom:10px; margin-bottom:6px;
+          border-bottom:1px solid var(--border-2, rgba(255,255,255,0.08));
+        }
+        .tb-mobile-section:last-child{ border-bottom:none; padding-bottom:0; margin-bottom:0; }
+        .tb-mobile-label{
+          font-size:10px; text-transform:uppercase; letter-spacing:.06em;
+          color: var(--text-dimmer); padding:4px 8px; font-weight:600;
+        }
+        .tb-mobile-title{
+          font-size:15px; font-weight:600; color: var(--text);
+          padding:8px; letter-spacing:-0.01em;
+        }
+        .tb-mobile-date{
+          font-size:12px; color: var(--text-dimmer); padding:4px 8px;
+        }
+        .tb-mobile-user{
+          display:flex; align-items:center; gap:10px; padding:8px;
+          border-radius:10px; background: var(--panel-2);
+        }
+        .tb-mobile-avatar{
+          width:32px; height:32px; border-radius:999px;
+          background:#46493a; color: var(--accent);
+          font-size:12px; font-weight:700;
+          display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        }
+        .tb-mobile-name{ font-size:13px; font-weight:600; color: var(--text); }
+
+        /* hide user-chip on mobile */
         @media (max-width: 700px){
           .tb-title{ display:none; }
           .tb-date{ display:none; }
+          .user-chip{ display:none; }
+          .tb-hamburger{ display:flex; }
+          .tb-divider{ display:none; }
+          .kbd{ display:none; }
+          .topbar-right{ padding:0 4px; gap:2px; }
+          .notif-panel{ right: -8px; width: min(360px, 92vw); }
+          .topbar{ position: relative; }
         }
       `}</style>
 
@@ -639,7 +722,34 @@ export default function Topbar({
 
       <div className="tb-divider" aria-hidden="true" />
 
-      <div className="tb-section topbar-right">
+      <div className="tb-section topbar-right" ref={menuRef}>
+        {/* Hamburger — mobile only */}
+        <button
+          className="tb-hamburger"
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(prev => !prev)}
+        >
+          <span className="material-icons-round" aria-hidden="true">{menuOpen ? "close" : "menu"}</span>
+        </button>
+
+        {menuOpen && (
+          <div className="tb-mobile-menu" role="menu">
+            <div className="tb-mobile-section">
+              <div className="tb-mobile-label">Page</div>
+              <div className="tb-mobile-title">{title}</div>
+              <div className="tb-mobile-date">{today}</div>
+            </div>
+            <div className="tb-mobile-section">
+              <div className="tb-mobile-label">Account</div>
+              <div className="tb-mobile-user">
+                <div className="tb-mobile-avatar">{userInitials}</div>
+                <div className="tb-mobile-name">{displayName}</div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="notif-wrap" ref={notifRef}>
           <button
             className="icon-btn"
@@ -769,5 +879,3 @@ export default function Topbar({
     </header>
   );
 }
-
-

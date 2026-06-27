@@ -806,7 +806,7 @@ export default function LandingPage() {
           overflow: hidden;
           border: 1px solid rgba(255,255,255,0.1);
           background: #1c1c1e;
-          aspect-ratio: 16/13.5;
+          aspect-ratio: 16/11.5;
           display: flex; align-items: center; justify-content: center;
         }
         .hero-video-inner{

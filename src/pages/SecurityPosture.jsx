@@ -193,7 +193,7 @@ function AuthDrawer({ domain, onClose }) {
             position: 'relative',
             width: 640, maxWidth: '100%',
             maxHeight: 'calc(100vh - 48px)',
-            background: '#1c1c1e', border: '1px solid #333',
+            background: 'var(--panel)', border: '1px solid var(--border)',
             borderRadius: 16,
             boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
             display: 'flex', flexDirection: 'column',
@@ -393,7 +393,7 @@ function ChainDrawer({ event, onClose }) {
             position: 'relative',
             width: 640, maxWidth: '100%',
             maxHeight: 'calc(100vh - 48px)',
-            background: '#1c1c1e', border: '1px solid #333',
+            background: 'var(--panel)', border: '1px solid var(--border)',
             borderRadius: 16,
             boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
             display: 'flex', flexDirection: 'column',
@@ -570,7 +570,7 @@ function SenderDrawer({ sender, onClose }) {
             position: 'relative',
             width: 640, maxWidth: '100%',
             maxHeight: 'calc(100vh - 48px)',
-            background: '#1c1c1e', border: '1px solid #333',
+            background: 'var(--panel)', border: '1px solid var(--border)',
             borderRadius: 16,
             boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
             display: 'flex', flexDirection: 'column',
@@ -791,10 +791,10 @@ export default function SecurityPosturePage() {
   .tab:hover{ color: var(--text); }
   .tab.active{ background: var(--panel-3); color: var(--text); }
   .tab b{
-    background: rgba(255,255,255,0.10); color: var(--text);
+    background: var(--panel-3); color: var(--text);
     font-size:11px; font-weight:600; padding:1px 7px; border-radius:999px;
   }
-  .tab.active b{ background:#111; color:var(--text); }
+  .tab.active b{ background: var(--panel); color:var(--text); }
   .filter-icon-btn{
     width:34px; height:34px; border-radius:999px;
     background: var(--panel); border:1px solid var(--border);
@@ -814,7 +814,13 @@ export default function SecurityPosturePage() {
     border:1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--panel);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-2, rgba(255,255,255,0.18)) transparent;
   }
+  .table-wrap::-webkit-scrollbar{ height:5px; width:5px; }
+  .table-wrap::-webkit-scrollbar-track{ background: transparent; }
+  .table-wrap::-webkit-scrollbar-thumb{ background: var(--border-2, rgba(255,255,255,0.18)); border-radius:999px; }
+  .table-wrap::-webkit-scrollbar-thumb:hover{ background: var(--text-dimmer); }
   .t-row{
     display:grid;
     align-items:center;
@@ -831,9 +837,9 @@ export default function SecurityPosturePage() {
   .t-data.selected{ background: var(--panel-3); }
   .t-data:last-child{ border-bottom:none; }
 
-  .auth-head, .auth-row{ grid-template-columns: 1.4fr 90px 90px 110px 110px 80px; }
-  .chain-head, .chain-row{ grid-template-columns: 130px 110px 170px 1fr 120px 110px; }
-  .senders-head, .senders-row{ grid-template-columns: 110px 1.4fr 170px 150px 100px 110px; }
+  .auth-head, .auth-row{ grid-template-columns: 1.4fr 90px 90px 110px 110px 80px; min-width: 680px; }
+  .chain-head, .chain-row{ grid-template-columns: 130px 110px 170px 1fr 120px 110px; min-width: 780px; }
+  .senders-head, .senders-row{ grid-template-columns: 110px 1.4fr 170px 150px 100px 110px; min-width: 780px; }
 
   .c-domain-main{ font-size:13.5px; font-weight:600; color: var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .c-domain{ font-size:12.5px; color: var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -875,25 +881,15 @@ export default function SecurityPosturePage() {
   }
 
   .trust-cell{ display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600; }
-  .trust-track{ width:54px; height:6px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .trust-track{ width:54px; height:6px; border-radius:999px; background:var(--border); overflow:hidden; }
   .trust-fill{ height:100%; border-radius:999px; }
 
   .empty-state{ padding:40px; text-align:center; color: var(--text-dimmer); font-size:13px; }
 
   @media (max-width: 1100px){
-    .auth-head, .auth-row{ grid-template-columns: 1fr 70px 70px 90px 0 0; }
-    .chain-head, .chain-row{ grid-template-columns: 110px 100px 0 1fr 0 90px; }
-    .senders-head, .senders-row{ grid-template-columns: 90px 1fr 0 0 0 90px; }
-    .auth-row > div:nth-child(5), .auth-row > div:nth-child(6),
-    .chain-row > div:nth-child(3), .chain-row > div:nth-child(5),
-    .senders-row > div:nth-child(3), .senders-row > div:nth-child(4), .senders-row > div:nth-child(5){
-      display:none;
-    }
-    .auth-head > div:nth-child(5), .auth-head > div:nth-child(6),
-    .chain-head > div:nth-child(3), .chain-head > div:nth-child(5),
-    .senders-head > div:nth-child(3), .senders-head > div:nth-child(4), .senders-head > div:nth-child(5){
-      display:none;
-    }
+    .auth-head, .auth-row{ grid-template-columns: 1.4fr 90px 90px 110px 110px 80px; }
+    .chain-head, .chain-row{ grid-template-columns: 130px 110px 170px 1fr 120px 110px; }
+    .senders-head, .senders-row{ grid-template-columns: 110px 1.4fr 170px 150px 100px 110px; }
   }
 
   /* ---------------- drawer / modal (shared with ThreadsPage, ReportsPage) ---------------- */
@@ -951,7 +947,7 @@ export default function SecurityPosturePage() {
     display:flex; align-items:center; gap:6px;
   }
   .signal-label .material-icons-round{ font-size:13px; flex-shrink:0; }
-  .signal-track{ flex:1; height:6px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .signal-track{ flex:1; height:6px; border-radius:999px; background:var(--border); overflow:hidden; }
   .signal-fill{ height:100%; border-radius:999px; }
   .signal-val{ width:36px; text-align:right; font-size:12px; font-weight:700; }
   .signal-val-text{ font-size:12.5px; font-weight:600; color: var(--text); flex-shrink:0; }
@@ -991,6 +987,16 @@ export default function SecurityPosturePage() {
   .btn-primary{ background: var(--accent); color:#111; }
   .btn-primary:hover{ filter: brightness(0.95); }
 
+  @media (max-width: 640px){
+    .section-tabs{ flex-wrap: wrap; border-radius: 14px; padding: 4px; }
+    .stab{ font-size: 12px; padding: 6px 10px; }
+    .page-header{ flex-direction: column; align-items: stretch; gap: 8px; }
+    .drawer-backdrop{ padding: 0; align-items: flex-end; }
+    .drawer{ width: 100%; max-width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; max-height: 85vh; }
+    .drawer-actions{ flex-direction: column; }
+    .table-wrap{ border-radius: 12px; }
+  }
+
   ::selection{ background: var(--accent-dim); }
 `}</style>
 
@@ -1003,5 +1009,3 @@ export default function SecurityPosturePage() {
     </>
   );
 }
-
-
