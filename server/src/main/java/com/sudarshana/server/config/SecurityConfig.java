@@ -22,7 +22,7 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Value("${sudarshana.security.cors.allowed-origins:http://localhost:5000,http://localhost:5173,http://localhost:5174,http://localhost:5175}")
+    @Value("${sudarshana.security.cors.allowed-origins:http://localhost:5000,http://localhost:5173}")
     private String allowedOrigins;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {

@@ -14,17 +14,21 @@ public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException e) {
-        logger.error("Unhandled exception: {}", e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("status", "ERROR", "message", "An internal error occurred"));
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> handleIllegalArgument(IllegalArgumentException e) {
+        logger.warn("Bad request: {}", e.getMessage());
+        return ResponseEntity.badRequest().body(Map.of(
+                "status", "ERROR",
+                "message", e.getMessage() != null ? e.getMessage() : "Invalid request"
+        ));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleException(Exception e) {
+    public ResponseEntity<Map<String, String>> handleGeneral(Exception e) {
         logger.error("Unhandled exception: {}", e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("status", "ERROR", "message", "An internal error occurred"));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                "status", "ERROR",
+                "message", "An internal error occurred. Please try again later."
+        ));
     }
 }
