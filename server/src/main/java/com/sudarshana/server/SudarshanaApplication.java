@@ -15,7 +15,32 @@ public class SudarshanaApplication {
 
     public static void main(String[] args) {
         loadEnvFile();
+        fixDataSourceUrl();
         SpringApplication.run(SudarshanaApplication.class, args);
+    }
+
+    private static void fixDataSourceUrl() {
+        String url = System.getenv("SPRING_DATASOURCE_URL");
+        if (url == null || url.isEmpty()) {
+            url = System.getenv("DATABASE_URL");
+        }
+        if (url != null && !url.isEmpty() && !url.startsWith("jdbc:")) {
+            System.setProperty("spring.datasource.url", "jdbc:" + url);
+        }
+        String user = System.getenv("SPRING_DATASOURCE_USERNAME");
+        if (user == null || user.isEmpty()) {
+            user = System.getenv("PGUSER");
+        }
+        if (user != null && !user.isEmpty()) {
+            System.setProperty("spring.datasource.username", user);
+        }
+        String pass = System.getenv("SPRING_DATASOURCE_PASSWORD");
+        if (pass == null || pass.isEmpty()) {
+            pass = System.getenv("PGPASSWORD");
+        }
+        if (pass != null && !pass.isEmpty()) {
+            System.setProperty("spring.datasource.password", pass);
+        }
     }
 
     private static void loadEnvFile() {
