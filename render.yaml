@@ -1,16 +1,13 @@
 services:
   - type: web
     name: sudarshana-server
-    runtime: java
+    runtime: docker
     region: oregon
     plan: free
     rootDir: server
-    buildCommand: mvn -B compile
-    startCommand: mvn -B spring-boot:run -Dspring-boot.run.profiles=postgres
+    dockerfilePath: Dockerfile
     healthCheckPath: /api/health
     envVars:
-      - key: JAVA_VERSION
-        value: "17"
       - key: SPRING_PROFILES_ACTIVE
         value: postgres
       - key: SPRING_DATASOURCE_URL
