@@ -64,7 +64,7 @@ SEED_DEMO_DATA=true
 ## Project Structure
 
 ```
-threadguard-sudarshana/
+sudarshana/
   src/                    # React frontend
     auth/                 # Authentication context & guards
     components/           # UI components (Sidebar, Topbar, Settings, Toast)
@@ -95,14 +95,6 @@ threadguard-sudarshana/
 | POST | `/api/threads/{id}/hijack` | Simulate hijack attack |
 | GET | `/api/audit-logs` | List audit logs |
 | GET | `/api/settings` | Get app settings |
-
-## Docker
-
-```bash
-docker-compose up
-```
-
-This starts the full stack: frontend (port 5000), backend (port 8080), and PostgreSQL (port 5432).
 
 ## License
 

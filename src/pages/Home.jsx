@@ -263,7 +263,7 @@ export default function Home() {
           setWatchDomains(watch);
         }
       } catch {
-        console.warn("Backend server offline.");
+        // backend offline
       }
     };
 

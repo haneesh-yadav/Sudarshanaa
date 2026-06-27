@@ -733,7 +733,7 @@ export default function SecurityPosturePage() {
           setThreads(mapped);
         }
       } catch {
-        console.warn("Backend server offline.");
+        // backend offline
       }
     };
     fetchPostureData();

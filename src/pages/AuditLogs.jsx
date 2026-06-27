@@ -58,8 +58,8 @@ export default function AuditLogsPage() {
         const data = await res.json();
         setLogs(data);
       }
-    } catch (err) {
-      console.error("Failed to fetch audit logs:", err);
+    } catch {
+      // ignore
     } finally {
       setLoading(false);
     }

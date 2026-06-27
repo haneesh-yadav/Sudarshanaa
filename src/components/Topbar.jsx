@@ -83,8 +83,8 @@ export default function Topbar({
           }
         }
       }
-    } catch (e) {
-      console.error("Failed to fetch users:", e);
+    } catch {
+      // ignore
     }
   };
 
@@ -737,8 +737,7 @@ export default function Topbar({
                   const data = await res.json().catch(() => ({}));
                   setPasswordSetupError(data.message || "Could not set password. Please try again.");
                 }
-              } catch (err) {
-                console.error("Failed to set password:", err);
+              } catch {
                 setPasswordSetupError("Connection to backend failed. Please ensure the server is running.");
               }
             }} style={{ width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>

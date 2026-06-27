@@ -723,8 +723,8 @@ export default function ReportsPage() {
           const mapped = data.map(mapReportToThread);
           setThreads(mapped);
         }
-      } catch (err) {
-        console.warn("Backend server offline.", err);
+      } catch {
+        // backend offline
       }
     };
     fetchReportsData();

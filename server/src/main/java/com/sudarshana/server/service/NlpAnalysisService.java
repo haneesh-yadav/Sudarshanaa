@@ -59,13 +59,6 @@ public class NlpAnalysisService {
             score += Math.min(30.0, authorityMatches * 15.0);
         }
 
-        // Add a small baseline noise score if something was matched, otherwise baseline is low
-        if (score > 0) {
-            score = Math.min(99.9, score + (Math.random() * 5.0)); // add 0-5 random decimal noise
-        } else {
-            score = 2.0 + (Math.random() * 3.0); // very low baseline risk (2-5%)
-        }
-
         // Round to 1 decimal place
         score = Math.round(score * 10.0) / 10.0;
 

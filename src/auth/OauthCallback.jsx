@@ -10,7 +10,6 @@ export default function OauthCallback() {
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code');
     if (!code) {
-      console.error('No authorization code found in URL');
       navigate('/home');
       return;
     }
@@ -41,15 +40,12 @@ export default function OauthCallback() {
             const from = location.state?.from?.pathname || '/home';
             navigate(from, { replace: true });
           } else {
-            console.error('OAuth exchange error:', data.message);
             navigate('/home');
           }
         } else {
-          console.error('OAuth token exchange failed');
           navigate('/home');
         }
-      } catch (err) {
-        console.error('OAuth exchange network failure:', err);
+      } catch {
         navigate('/home');
       }
     };

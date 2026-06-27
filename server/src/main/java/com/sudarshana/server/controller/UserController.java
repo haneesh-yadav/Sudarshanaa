@@ -117,19 +117,21 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @org.springframework.transaction.annotation.Transactional
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id, @RequestBody(required = false) java.util.Map<String, String> request) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id, @RequestBody java.util.Map<String, String> request) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        // If a password is provided, verify it before deleting
-        if (request != null && request.containsKey("password")) {
-            String password = request.get("password");
-            User u = user.get();
-            if (u.getPassword() == null || !passwordEncoder.matches(password, u.getPassword())) {
-                return ResponseEntity.status(org.springframework.http.HttpStatus.FORBIDDEN).build();
-            }
+        String password = request != null ? request.get("password") : null;
+        if (password == null || password.isEmpty()) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("status", "ERROR", "message", "Password is required"));
+        }
+
+        User u = user.get();
+        if (u.getPassword() == null || !passwordEncoder.matches(password, u.getPassword())) {
+            return ResponseEntity.status(org.springframework.http.HttpStatus.FORBIDDEN)
+                    .body(java.util.Map.of("status", "ERROR", "message", "Incorrect password"));
         }
 
         List<EmailMessage> messages = emailMessageRepository.findByOwnerId(id);

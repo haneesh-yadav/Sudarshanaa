@@ -1821,8 +1821,7 @@ export default function SettingsPage({ open, onClose }) {
                   } else {
                     showToast("Failed to delete account. Please try again.", "error");
                   }
-                } catch (err) {
-                  console.error("Delete account error:", err);
+                } catch {
                   showToast("An error occurred while deleting your account.", "error");
                 }
               }} />}

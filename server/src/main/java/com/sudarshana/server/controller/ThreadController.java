@@ -10,58 +10,55 @@ import com.sudarshana.server.service.SudarshanaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/threads")
 public class ThreadController {
 
-    private final SudarshanaService SudarshanaService;
+    private final SudarshanaService sudarshanaService;
     private final UserRepository userRepository;
     private final EmailSenderService emailSenderService;
     private final com.sudarshana.server.repository.AuditLogRepository auditLogRepository;
 
     @Autowired
-    public ThreadController(SudarshanaService SudarshanaService,
+    public ThreadController(SudarshanaService sudarshanaService,
                             UserRepository userRepository,
                             EmailSenderService emailSenderService,
                             com.sudarshana.server.repository.AuditLogRepository auditLogRepository) {
-        this.SudarshanaService = SudarshanaService;
+        this.sudarshanaService = sudarshanaService;
         this.userRepository = userRepository;
         this.emailSenderService = emailSenderService;
         this.auditLogRepository = auditLogRepository;
     }
 
-    /**
-     * Returns a summary/list of all active thread reports.
-     */
+    private User getAuthenticatedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User) {
+            return (User) principal;
+        }
+        return null;
+    }
+
     @GetMapping
-    public ResponseEntity<List<ThreadSecurityReport>> getAllReports(
-            @RequestParam(value = "userId", required = false) Long userId) {
-        List<ThreadSecurityReport> reports = SudarshanaService.getAllReports(userId);
+    public ResponseEntity<List<ThreadSecurityReport>> getAllReports() {
+        User user = getAuthenticatedUser();
+        Long userId = user != null ? user.getId() : null;
+        List<ThreadSecurityReport> reports = sudarshanaService.getAllReports(userId);
         return ResponseEntity.ok(reports);
     }
 
-    /**
-     * Appends a message to a thread and returns its immediate security result.
-     * Also routes the message via SMTP if SMTP credentials are configured for the user.
-     */
     @PostMapping("/{threadId}/messages")
     public ResponseEntity<MessageSecurityResult> addMessage(
             @PathVariable String threadId,
-            @RequestBody EmailMessage message,
-            @RequestParam(value = "userId", required = false) Long userId) {
-        
-        User owner = null;
-        if (userId != null) {
-            owner = userRepository.findById(userId).orElse(null);
-        }
+            @RequestBody EmailMessage message) {
+
+        User owner = getAuthenticatedUser();
         if (owner == null) {
-            // fallback to demo user
             owner = userRepository.findByEmail("demo@sudarshana.com").orElse(null);
         }
 
@@ -69,12 +66,10 @@ public class ThreadController {
             message.setOwner(owner);
             message.setOutgoing(true);
 
-            // Dynamically inject user's email as the sender address if not specifically configured
             if (message.getSender() == null || message.getSender().equalsIgnoreCase("ops@internal.sudarshana.io")) {
                 message.setSender(owner.getEmail());
             }
 
-            // Route via SMTP if configured (using OAuth2 refresh token or legacy email password)
             boolean hasSmtpSecret = (owner.getEmailPassword() != null && !owner.getEmailPassword().isEmpty()) ||
                                     (owner.getOauth2RefreshToken() != null && !owner.getOauth2RefreshToken().isEmpty());
             if (owner.getSmtpHost() != null && !owner.getSmtpHost().isEmpty() && hasSmtpSecret) {
@@ -82,13 +77,13 @@ public class ThreadController {
                     String cleanRecipient = cleanEmailAddress(message.getRecipient());
                     emailSenderService.sendEmail(owner, cleanRecipient, message.getSubject(), message.getBody());
                 } catch (Exception e) {
-                    throw new RuntimeException("Failed to send SMTP email: " + e.getMessage(), e);
+                    throw new RuntimeException("Failed to send SMTP email", e);
                 }
             }
         }
 
-        MessageSecurityResult result = SudarshanaService.addMessage(threadId, message);
-        
+        MessageSecurityResult result = sudarshanaService.addMessage(threadId, message);
+
         if (owner != null && auditLogRepository != null) {
             auditLogRepository.save(new com.sudarshana.server.model.AuditLog(
                 System.currentTimeMillis(),
@@ -97,30 +92,25 @@ public class ThreadController {
                 "Sent email reply in thread " + threadId + " to recipient " + message.getRecipient()
             ));
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    /**
-     * Returns the full verification report for a thread, re-evaluating the cryptographic chain.
-     */
     @GetMapping("/{threadId}")
     public ResponseEntity<ThreadSecurityReport> getThreadReport(
-            @PathVariable String threadId,
-            @RequestParam(value = "userId", required = false) Long userId) {
-        ThreadSecurityReport report = SudarshanaService.generateReport(threadId, userId);
+            @PathVariable String threadId) {
+        User user = getAuthenticatedUser();
+        Long userId = user != null ? user.getId() : null;
+        ThreadSecurityReport report = sudarshanaService.generateReport(threadId, userId);
         return ResponseEntity.ok(report);
     }
 
-    /**
-     * Artificially tampers with a message's body content to break the cryptographic link,
-     * demonstrating Sudarshana's real-time detection capabilities.
-     */
     @PostMapping("/{threadId}/hijack")
     public ResponseEntity<Map<String, String>> hijackMessage(
             @PathVariable String threadId,
-            @RequestBody Map<String, String> payload,
-            @RequestParam(value = "userId", required = false) Long userId) {
+            @RequestBody Map<String, String> payload) {
+        User user = getAuthenticatedUser();
+        Long userId = user != null ? user.getId() : null;
         String messageId = payload.get("messageId");
         String spoofedBody = payload.get("body");
 
@@ -131,7 +121,7 @@ public class ThreadController {
             ));
         }
 
-        boolean success = SudarshanaService.simulateHijack(threadId, messageId, spoofedBody, userId);
+        boolean success = sudarshanaService.simulateHijack(threadId, messageId, spoofedBody, userId);
         if (success) {
             return ResponseEntity.ok(Map.of(
                     "status", "SUCCESS",
@@ -147,8 +137,8 @@ public class ThreadController {
 
     @PostMapping("/blacklist")
     public ResponseEntity<Map<String, String>> blacklistDomain(
-            @RequestBody Map<String, String> payload,
-            @RequestParam(value = "userId", required = false) Long userId) {
+            @RequestBody Map<String, String> payload) {
+        User user = getAuthenticatedUser();
         String domain = payload.get("domain");
         if (domain == null || domain.trim().isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of(
@@ -156,16 +146,10 @@ public class ThreadController {
                     "message", "Parameter 'domain' is required."
             ));
         }
-        
-        String userEmail = "demo@sudarshana.com";
-        if (userId != null && userRepository != null) {
-            User user = userRepository.findById(userId).orElse(null);
-            if (user != null) {
-                userEmail = user.getEmail();
-            }
-        }
-        
-        SudarshanaService.blacklistDomain(domain, userEmail);
+
+        String userEmail = user != null ? user.getEmail() : "demo@sudarshana.com";
+
+        sudarshanaService.blacklistDomain(domain, userEmail);
         return ResponseEntity.ok(Map.of(
                 "status", "SUCCESS",
                 "message", "Domain '" + domain + "' added to security blacklist."
@@ -180,6 +164,3 @@ public class ThreadController {
         return emailStr.trim();
     }
 }
-
-
-

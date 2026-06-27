@@ -184,7 +184,7 @@ public class AuthController {
         } catch (Exception e) {
             logger.error("Error during Google OAuth2 token exchange: {}", e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("status", "ERROR", "message", "OAuth2 auth failed: " + e.getMessage()));
+                    .body(Map.of("status", "ERROR", "message", "OAuth2 authentication failed"));
         }
     }
 

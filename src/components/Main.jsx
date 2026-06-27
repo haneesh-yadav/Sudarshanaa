@@ -456,7 +456,7 @@ export default function LandingPage() {
       .then((data) => {
         if (data.clientId) setGoogleClientId(data.clientId);
       })
-      .catch((err) => console.error('Failed to load auth configuration', err));
+      .catch(() => {});
   }, []);
 
   const handleContinueEmail = async (e) => {
@@ -593,13 +593,12 @@ export default function LandingPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
 
-        html, body {
+        html, body, #root {
           margin: 0;
           padding: 0;
-          background: #0f0f11;
-        }
-        #root {
-          background: #0f0f11;
+          background: #0f0f11 !important;
+          color: #ffffff !important;
+          color-scheme: dark !important;
         }
 
         .tg-landing{
@@ -2099,7 +2098,7 @@ export default function LandingPage() {
                         onClick={() => { setStep('email'); setPassword(''); setError(''); setShowPassword(false); }}
                         title="Change email"
                       >
-                        âœ•
+                        ✕
                       </button>
                     </div>
                     <div style={{ position: 'relative', width: '100%' }}>

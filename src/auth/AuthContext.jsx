@@ -69,8 +69,7 @@ export function AuthProvider({ children }) {
           logout();
           return;
         }
-      } catch (err) {
-        console.error('Failed to validate auth session:', err);
+      } catch {
         logout();
         return;
       }

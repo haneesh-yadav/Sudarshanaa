@@ -1177,8 +1177,8 @@ export default function ThreadsPage() {
           await fetchThreads();
         }
       }
-    } catch (err) {
-      console.error("Failed to blacklist domain:", err);
+    } catch {
+      // ignore
     }
   };
 
@@ -1251,8 +1251,8 @@ export default function ThreadsPage() {
           if (updated) setSelected(updated);
         }
       }
-    } catch (err) {
-      console.warn("Backend server offline.", err);
+    } catch {
+      // backend offline
     }
   };
 
@@ -1278,8 +1278,7 @@ export default function ThreadsPage() {
       } else {
         showToast("Hijack failed â€” message not found in this thread.", "error");
       }
-    } catch (err) {
-      console.error("Failed to simulate hijack:", err);
+    } catch {
       showToast("Network error during hijack simulation.", "error");
     }
   };
@@ -1328,8 +1327,8 @@ export default function ThreadsPage() {
         setLeakWarning(null);
         await fetchThreads(threadId);
       }
-    } catch (err) {
-      console.error("Failed to send reply:", err);
+    } catch {
+      // ignore
     }
   };
 
@@ -1963,8 +1962,8 @@ export default function ThreadsPage() {
                   details: `Launched safe link preview sandbox for URL: ${link.url}`
                 })
               });
-            } catch (err) {
-              console.warn("Failed to log sandbox launch activity:", err);
+            } catch {
+              // ignore
             }
           }}
         />

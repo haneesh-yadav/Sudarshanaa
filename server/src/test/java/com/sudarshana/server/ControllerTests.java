@@ -114,7 +114,7 @@ class ControllerTests {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         when(emailMessageRepository.findByOwnerId(1L)).thenReturn(List.of());
 
-        ResponseEntity<Void> response = userController.deleteUser(1L, Map.of("password", "mypassword"));
+        ResponseEntity<?> response = userController.deleteUser(1L, Map.of("password", "mypassword"));
         assertEquals(200, response.getStatusCode().value());
         verify(userRepository).deleteById(1L);
     }
@@ -127,29 +127,28 @@ class ControllerTests {
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        ResponseEntity<Void> response = userController.deleteUser(1L, Map.of("password", "wrong"));
+        ResponseEntity<?> response = userController.deleteUser(1L, Map.of("password", "wrong"));
         assertEquals(403, response.getStatusCode().value());
         verify(userRepository, never()).deleteById(anyLong());
     }
 
     @Test
-    void deleteUser_withoutPasswordVerification_succeeds() {
+    void deleteUser_withoutPassword_returnsBadRequest() {
         User user = new User();
         user.setId(1L);
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        when(emailMessageRepository.findByOwnerId(1L)).thenReturn(List.of());
 
-        ResponseEntity<Void> response = userController.deleteUser(1L, null);
-        assertEquals(200, response.getStatusCode().value());
-        verify(userRepository).deleteById(1L);
+        ResponseEntity<?> response = userController.deleteUser(1L, null);
+        assertEquals(400, response.getStatusCode().value());
+        verify(userRepository, never()).deleteById(anyLong());
     }
 
     @Test
     void deleteUser_userNotFound_returnsNotFound() {
         when(userRepository.findById(999L)).thenReturn(Optional.empty());
 
-        ResponseEntity<Void> response = userController.deleteUser(999L, Map.of("password", "pw"));
+        ResponseEntity<?> response = userController.deleteUser(999L, Map.of("password", "pw"));
         assertEquals(404, response.getStatusCode().value());
     }
 
