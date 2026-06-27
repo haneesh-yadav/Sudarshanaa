@@ -9,7 +9,7 @@ google:
 sudarshana:
   security:
     jwt:
-      secret: ${SUDARSHANA_JWT_SECRET}
+      secret: ${SUDARSHANA_JWT_SECRET:}
     cors:
       allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5000,http://localhost:5173}
   sync:
