@@ -3,11 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SettingsPage from './Settings';
 import { useAuth } from '../auth/AuthContext';
 
-/**
- * Sidebar.jsx
- * Shared left navigation rail. Settings now opens as a modal popup
- * instead of navigating to /settings.
- */
 
 const BUILT_PAGES = ["Dashboard", "Threads", "Security Posture", "Reports", "Audit Logs"];
 

@@ -2,22 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../utils/toast.js';
 
-/**
- * Topbar.jsx
- * Shared top bar (stat pills + search + notifications + user chip)
- * used on every Sudarshana page. Same markup, styling, and position
- * everywhere. Stats/search placeholder/user can be overridden via
- * props if a page ever needs to, but default to the standard set so
- * every page looks identical out of the box.
- *
- * Usage:
- *   import Topbar from './Topbar';
- *   <Topbar />
- */
-
-// Stat pills used to live in the topbar on every page. They're now only
-// shown on the Dashboard itself (see Home.jsx's StatsBar) -- kept here as
-// an exported default so Home.jsx doesn't need to duplicate the data.
 export const DEFAULT_STATS = [
   { iconName: "mail", label: "Threads", value: 0 },
   { iconName: "warning", label: "Active threats", value: 0 },
@@ -294,7 +278,10 @@ export default function Topbar({
         .search-bar:focus-within{
           background: var(--panel-2, rgba(255,255,255,0.04));
         }
-        .search-bar .material-icons-round{ font-size:15px; flex-shrink:0; }
+        .search-bar .material-icons-round {
+          font-size:15px;
+          flex-shrink:0;
+        }
         .search-input{
           font-size:13px;
           color: var(--text);
@@ -340,11 +327,15 @@ export default function Topbar({
           color: var(--text-dim);
           transition: background .15s ease, color .15s ease;
         }
-        .icon-btn:hover{ background: var(--panel-3); color: var(--text); }
+        .icon-btn:hover {
+          background: var(--panel-3);
+          color: var(--text);
+        }
         .icon-btn .material-icons-round{ font-size:16px; }
         .badge-dot{
           position:absolute;
-          top:-2px; right:-2px;
+          top:-2px;
+          right:-2px;
           background:#e8543f;
           color:white;
           font-size:9.5px;
@@ -377,8 +368,14 @@ export default function Topbar({
           animation: notifSlide .32s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes notifSlide{
-          from{ opacity:0; transform: translateY(-10px) scale(0.97); }
-          to{ opacity:1; transform: translateY(0) scale(1); }
+          from {
+            opacity:0;
+            transform: translateY(-10px) scale(0.97);
+          }
+          to {
+            opacity:1;
+            transform: translateY(0) scale(1);
+          }
         }
         .notif-header{
           display:flex;
@@ -441,7 +438,8 @@ export default function Topbar({
         .notif-item:hover{ background: var(--panel-3, rgba(255,255,255,0.03)); }
         .notif-item.unread{ background: rgba(155,184,255,0.05); }
         .notif-icon{
-          width:30px; height:30px;
+          width:30px;
+          height:30px;
           border-radius:999px;
           display:flex;
           align-items:center;
@@ -450,10 +448,23 @@ export default function Topbar({
           margin-top:1px;
         }
         .notif-icon .material-icons-round{ font-size:15px; }
-        .notif-icon.tone-danger{ background: rgba(232,84,63,0.15); color:#e8543f; }
-        .notif-icon.tone-warning{ background: rgba(230,180,80,0.15); color:#e6b450; }
-        .notif-icon.tone-neutral{ background: var(--panel-3, rgba(255,255,255,0.06)); color: var(--text-dim); }
-        .notif-body{ flex:1; min-width:0; text-align:left; }
+        .notif-icon.tone-danger {
+          background: rgba(232,84,63,0.15);
+          color:#e8543f;
+        }
+        .notif-icon.tone-warning {
+          background: rgba(230,180,80,0.15);
+          color:#e6b450;
+        }
+        .notif-icon.tone-neutral {
+          background: var(--panel-3, rgba(255,255,255,0.06));
+          color: var(--text-dim);
+        }
+        .notif-body {
+          flex:1;
+          min-width:0;
+          text-align:left;
+        }
         .notif-title-row{
           display:flex;
           align-items:center;
@@ -466,7 +477,8 @@ export default function Topbar({
           flex-shrink:0;
         }
         .notif-unread-dot{
-          width:6px; height:6px;
+          width:6px;
+          height:6px;
           border-radius:999px;
           background: var(--accent, #9bb8ff);
           flex-shrink:0;
@@ -489,7 +501,8 @@ export default function Topbar({
           background:none;
           border:none;
           color: var(--text-dimmer);
-          width:20px; height:20px;
+          width:20px;
+          height:20px;
           border-radius:999px;
           display:flex;
           align-items:center;
@@ -499,7 +512,10 @@ export default function Topbar({
           transition: opacity .12s ease, background .12s ease, color .12s ease;
         }
         .notif-item:hover .notif-dismiss{ opacity:1; }
-        .notif-dismiss:hover{ background: var(--panel-3); color: var(--text); }
+        .notif-dismiss:hover {
+          background: var(--panel-3);
+          color: var(--text);
+        }
         .notif-dismiss .material-icons-round{ font-size:13px; }
         .notif-footer{
           padding:10px 16px;
@@ -526,7 +542,8 @@ export default function Topbar({
         }
         .user-chip:hover{ background: var(--panel-3); }
         .avatar{
-          width:28px; height:28px;
+          width:28px;
+          height:28px;
           border-radius:999px;
           background:#46493a;
           color: var(--accent);
@@ -537,8 +554,15 @@ export default function Topbar({
           justify-content:center;
         }
         .user-meta{ line-height:1.2; }
-        .user-name{ font-size:12.5px; font-weight:600; color: var(--text, #f2f2f3); }
-        .user-role{ font-size:11px; color: var(--text-dimmer, #9a9aa5); }
+        .user-name {
+          font-size:12.5px;
+          font-weight:600;
+          color: var(--text, #f2f2f3);
+        }
+        .user-role {
+          font-size:11px;
+          color: var(--text-dimmer, #9a9aa5);
+        }
 
         /* â”€â”€ Secure-Your-Workspace popup (Claude-style) â”€â”€ */
         .pw-setup-card {
@@ -585,7 +609,10 @@ export default function Topbar({
           transition: border-color .15s ease;
         }
         .pw-setup-input::placeholder { color: #555; }
-        .pw-setup-input:focus { border-color: #666; background: #383838; }
+        .pw-setup-input:focus {
+          border-color: #666;
+          background: #383838;
+        }
         .pw-setup-btn {
           width: 100%;
           padding: 18px;
@@ -609,7 +636,10 @@ export default function Topbar({
 
         .modal-backdrop {
           position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           background: rgba(0, 0, 0, 0.7);
           backdrop-filter: blur(8px);
           display: flex;
@@ -623,21 +653,35 @@ export default function Topbar({
           to { opacity: 1; }
         }
         @keyframes slideUp {
-          from { transform: translateY(20px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
+          from {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
         }
 
         /* hamburger button */
         .tb-hamburger{
           display:none;
-          width:38px; height:38px; border-radius:999px;
-          background: transparent; border:none;
-          align-items:center; justify-content:center;
-          color: var(--text-dim); cursor:pointer;
+          width:38px;
+          height:38px;
+          border-radius:999px;
+          background: transparent;
+          border:none;
+          align-items:center;
+          justify-content:center;
+          color: var(--text-dim);
+          cursor:pointer;
           transition: background .15s ease, color .15s ease;
           flex-shrink:0;
         }
-        .tb-hamburger:hover{ background: var(--panel-3); color: var(--text); }
+        .tb-hamburger:hover {
+          background: var(--panel-3);
+          color: var(--text);
+        }
         .tb-hamburger .material-icons-round{ font-size:20px; }
 
         /* mobile dropdown from hamburger */
@@ -658,33 +702,64 @@ export default function Topbar({
           animation: notifSlide .22s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .tb-mobile-section{
-          display:flex; flex-direction:column; gap:2px;
-          padding-bottom:10px; margin-bottom:6px;
+          display:flex;
+          flex-direction:column;
+          gap:2px;
+          padding-bottom:10px;
+          margin-bottom:6px;
           border-bottom:1px solid var(--border-2, rgba(255,255,255,0.08));
         }
-        .tb-mobile-section:last-child{ border-bottom:none; padding-bottom:0; margin-bottom:0; }
+        .tb-mobile-section:last-child {
+          border-bottom:none;
+          padding-bottom:0;
+          margin-bottom:0;
+        }
         .tb-mobile-label{
-          font-size:10px; text-transform:uppercase; letter-spacing:.06em;
-          color: var(--text-dimmer); padding:4px 8px; font-weight:600;
+          font-size:10px;
+          text-transform:uppercase;
+          letter-spacing:.06em;
+          color: var(--text-dimmer);
+          padding:4px 8px;
+          font-weight:600;
         }
         .tb-mobile-title{
-          font-size:15px; font-weight:600; color: var(--text);
-          padding:8px; letter-spacing:-0.01em;
+          font-size:15px;
+          font-weight:600;
+          color: var(--text);
+          padding:8px;
+          letter-spacing:-0.01em;
         }
         .tb-mobile-date{
-          font-size:12px; color: var(--text-dimmer); padding:4px 8px;
+          font-size:12px;
+          color: var(--text-dimmer);
+          padding:4px 8px;
         }
         .tb-mobile-user{
-          display:flex; align-items:center; gap:10px; padding:8px;
-          border-radius:10px; background: var(--panel-2);
+          display:flex;
+          align-items:center;
+          gap:10px;
+          padding:8px;
+          border-radius:10px;
+          background: var(--panel-2);
         }
         .tb-mobile-avatar{
-          width:32px; height:32px; border-radius:999px;
-          background:#46493a; color: var(--accent);
-          font-size:12px; font-weight:700;
-          display:flex; align-items:center; justify-content:center; flex-shrink:0;
+          width:32px;
+          height:32px;
+          border-radius:999px;
+          background:#46493a;
+          color: var(--accent);
+          font-size:12px;
+          font-weight:700;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-shrink:0;
         }
-        .tb-mobile-name{ font-size:13px; font-weight:600; color: var(--text); }
+        .tb-mobile-name {
+          font-size:13px;
+          font-weight:600;
+          color: var(--text);
+        }
 
         /* hide user-chip on mobile */
         @media (max-width: 700px){
@@ -694,8 +769,14 @@ export default function Topbar({
           .tb-hamburger{ display:flex; }
           .tb-divider{ display:none; }
           .kbd{ display:none; }
-          .topbar-right{ padding:0 4px; gap:2px; }
-          .notif-panel{ right: -8px; width: min(360px, 92vw); }
+          .topbar-right {
+            padding:0 4px;
+            gap:2px;
+          }
+          .notif-panel {
+            right: -8px;
+            width: min(360px, 92vw);
+          }
           .topbar{ position: relative; }
         }
       `}</style>

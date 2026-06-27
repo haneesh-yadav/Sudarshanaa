@@ -40,20 +40,6 @@ jobs:
     defaults:
       run:
         working-directory: server
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_DB: Sudarshana
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     steps:
       - uses: actions/checkout@v4
 
@@ -69,9 +55,3 @@ jobs:
 
       - name: Test
         run: mvn -B test
-        env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/Sudarshana
-          SPRING_DATASOURCE_USERNAME: postgres
-          SPRING_DATASOURCE_PASSWORD: postgres
-          SPRING_PROFILES_ACTIVE: postgres
-          SUDARSHANA_JWT_SECRET: ci-test-secret-do-not-use-in-production
