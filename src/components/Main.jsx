@@ -3591,7 +3591,7 @@ export default function LandingPage() {
             
             <div className="new-footer-bottom">
               <span className="new-footer-copyright">
-                Â© 2026 Sudarshana. All rights reserved.
+                © 2026 Sudarshana. All rights reserved.
               </span>
               <div className="new-footer-legal-links">
                 <a className="new-footer-legal-link" >Sudarshana 2026</a>
