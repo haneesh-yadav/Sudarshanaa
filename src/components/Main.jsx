@@ -8,7 +8,7 @@ const LAYERS = [
     tone: "accent",
     tag: "Layer 01",
     title: "Behavioral NLP",
-    desc: "Custom-trained models flag relational anomalies â€” tone shifts, urgency spikes, and commands that depart from a sender's baseline.",
+    desc: "Custom-trained models flag relational anomalies  tone shifts, urgency spikes, and commands that depart from a sender's baseline.",
   },
   {
     iconName: "verified_user",
@@ -27,7 +27,7 @@ const LAYERS = [
 ];
 
 const FAQS = [
-  { q: "How is this different from a Secure Email Gateway?", a: "SEGs scan for malicious links and attachments. Sudarshana inspects the systemic context of a conversation â€” behavior, protocol alignment, and historical lineage â€” catching hijacks that look like ordinary text." },
+  { q: "How is this different from a Secure Email Gateway?", a: "SEGs scan for malicious links and attachments. Sudarshana inspects the systemic context of a conversation  behavior, protocol alignment, and historical lineage  catching hijacks that look like ordinary text." },
   { q: "Does it require changes to our mail infrastructure?", a: "No. Sudarshana deploys as a cloud-native API integration with Microsoft 365 and Google Workspace, sitting alongside your existing stack." },
   { q: "What happens when the cryptographic chain breaks?", a: "A break in the SHA-256 cascade triggers an immediate alert to the SOC queue, before any action is taken on the thread." },
 ];
@@ -37,7 +37,7 @@ function Icon({ name, className = "" }) {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   NAV ITEMS â€” matches the landing page sections
+   NAV ITEMS  matches the landing page sections
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const NAV_LINKS = [
   { label: "Platform",     href: "#platform"     },
@@ -47,7 +47,7 @@ const NAV_LINKS = [
 ];
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CSS â€” landing page dark tokens, Header.jsx layout
+   CSS  landing page dark tokens, Header.jsx layout
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const HEADER_CSS = `
   /* â”€â”€ Shared icon render â”€â”€ */
@@ -98,7 +98,7 @@ const HEADER_CSS = `
     border-color: rgba(255,255,255,0.07);
   }
 
-  /* â”€â”€ Brand / logo â€” left â”€â”€ */
+  /* â”€â”€ Brand / logo  left â”€â”€ */
   .tgh-brand {
     display: flex;
     align-items: center;
@@ -382,7 +382,7 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
 
   const isLoginPage = location.pathname === "/login" || location.pathname === "/signup";
 
-  /* scroll listener â€” target the .tg-landing overflow container, not window */
+  /* scroll listener  target the .tg-landing overflow container, not window */
   useEffect(() => {
     const container = document.querySelector(".tg-landing");
     if (!container) return;
@@ -422,7 +422,7 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
         className={`tgh-nav${scrolled ? " scrolled" : ""}`}
       >
 
-        {/* â”€â”€ Brand â€” left â”€â”€ */}
+        {/* â”€â”€ Brand  left â”€â”€ */}
         <Link to="/" className="tgh-brand">
           <span className="tgh-brand-mark">
             <img src="sudarshana.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
@@ -430,7 +430,7 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
           <span className="tgh-brand-name">Sudarshana</span>
         </Link>
 
-        {/* â”€â”€ Centre nav â€” hidden on login/signup â”€â”€ */}
+        {/* â”€â”€ Centre nav  hidden on login/signup â”€â”€ */}
         {!isLoginPage && (
           <div className="tgh-nav-center">
             {NAV_LINKS.map((link) => (
@@ -533,7 +533,7 @@ export default function LandingPage() {
   const [demoScene, setDemoScene] = useState(0); // 0: inbox triage, 1: settings, 2: thread integrity
   const [demoCycle, setDemoCycle] = useState(0); // bumps each time a scene re-enters, to restart its CSS animations
 
-  // Looping hero demo â€” cycles through three product scenes
+  // Looping hero demo  cycles through three product scenes
   useEffect(() => {
     const SCENE_DURATIONS = [5800, 5200, 6200]; // ms shown per scene
     let idx = 0;
@@ -709,7 +709,7 @@ export default function LandingPage() {
         }
 
         .tg-landing{
-          /* Public marketing page â€” intentionally NOT themeable. These
+          /* Public marketing page  intentionally NOT themeable. These
              variables are pinned to fixed dark values here so that the
              in-app Appearance (Light/Dark/System) setting, which
              overwrites these same variable names on :root, never
@@ -2812,7 +2812,7 @@ export default function LandingPage() {
                     <div className="hero-mock-rows">
                       {[
                         { init:"VY", sender:"Vineet Yadav (CFO)", snippet:"Please confirm the updated wire details below...", risk:"crit", flagged:true, delay: 2.6 },
-                        { init:"HY", sender:"Haneesh Yadav (Legal)", snippet:"Re: Contract amendment â€” see attached revisions", risk:"ok", flagged:false, delay: 2.95 },
+                        { init:"HY", sender:"Haneesh Yadav (Legal)", snippet:"Re: Contract amendment  see attached revisions", risk:"ok", flagged:false, delay: 2.95 },
                         { init:"KY", sender:"Kunal Yadav (Vendor)", snippet:"Following up on the invoice from last Thursday...", risk:"warn", flagged:false, delay: 3.3 },
                       ].map((row) => (
                         <div className={`hero-mock-row${row.flagged ? " flagged" : ""}`} key={row.sender} style={{ animationDelay: `${row.delay}s` }}>
@@ -2867,11 +2867,11 @@ export default function LandingPage() {
                 {demoScene === 2 && (
                   <div className="hero-mock-body">
                     <div className="hero-mock-thread-head">
-                      <div className="hero-mock-thread-subject">Re: Q3 wire authorization â€” Acme Holdings</div>
+                      <div className="hero-mock-thread-subject">Re: Q3 wire authorization  Acme Holdings</div>
                       <div className="hero-mock-thread-meta">Haneesh Yadav (CFO) Â· Vineet Yadav (Finance) Â· 4 messages</div>
                     </div>
 
-                    <div className="hero-mock-hash-caption" style={{ animationDelay: "0.1s" }}>Cryptographic thread lock â€” SHA-256 chain validation</div>
+                    <div className="hero-mock-hash-caption" style={{ animationDelay: "0.1s" }}>Cryptographic thread lock  SHA-256 chain validation</div>
 
                     <div className="hero-mock-hashline">
                       {[0,1,2,3].map((i) => {
@@ -2887,9 +2887,9 @@ export default function LandingPage() {
 
                     <div className="hero-mock-thread-msgs">
                       {[
-                        { text: <><b>Vinnet Yadav</b> opened thread â€” baseline tone established</>, bad: false, delay: 2.2 },
-                        { text: <><b>Haneesh Yadav</b> replied â€” routine approval, protocol normal</>, bad: false, delay: 2.6 },
-                        { text: <><b>Unknown sender</b> â€” wire routing altered, hash mismatch at #3</>, bad: true, delay: 3.0 },
+                        { text: <><b>Vinnet Yadav</b> opened thread  baseline tone established</>, bad: false, delay: 2.2 },
+                        { text: <><b>Haneesh Yadav</b> replied  routine approval, protocol normal</>, bad: false, delay: 2.6 },
+                        { text: <><b>Unknown sender</b>  wire routing altered, hash mismatch at #3</>, bad: true, delay: 3.0 },
                       ].map((m, i) => (
                         <div className="hero-mock-thread-msg" key={i} style={{ animationDelay: `${m.delay}s` }}>
                           <span className={"hero-mock-thread-msg-dot" + (m.bad ? " bad" : "")} />
@@ -2898,7 +2898,7 @@ export default function LandingPage() {
                       ))}
                       <div className="hero-mock-alert" style={{ animationDelay: "3.6s" }}>
                         <Icon name="link_off" className="pulse" />
-                        <span className="hero-mock-alert-text">Chain integrity broken â€” content altered after message 3</span>
+                        <span className="hero-mock-alert-text">Chain integrity broken  content altered after message 3</span>
                       </div>
                     </div>
                   </div>
@@ -2930,7 +2930,7 @@ export default function LandingPage() {
                 <circle cx="60" cy="60" r="40" stroke="#df7453" strokeWidth="1" strokeOpacity="0.15"/>
                 {/* Envelope body */}
                 <rect x="28" y="42" width="64" height="44" rx="6" fill="#1e1510" stroke="#df7453" strokeWidth="2"/>
-                {/* Envelope flap â€” open/broken */}
+                {/* Envelope flap  open/broken */}
                 <path d="M28 48 L60 66 L92 48" stroke="#df7453" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                 {/* Crack / break line through envelope */}
                 <path d="M56 54 L58 62 L54 68 L56 76" stroke="#df7453" strokeWidth="1.5" strokeLinecap="round" opacity="0.9"/>
@@ -2973,7 +2973,7 @@ export default function LandingPage() {
               </div>
               <div className="problem-col-title">Psychological manipulation</div>
               <div className="problem-col-desc">
-                Once embedded, attackers introduce subtle shifts â€” artificial urgency, authority exploitation, or sudden routing/wire number changes.
+                Once embedded, attackers introduce subtle shifts  artificial urgency, authority exploitation, or sudden routing/wire number changes.
               </div>
             </div>
 
@@ -3002,7 +3002,7 @@ export default function LandingPage() {
           <div className="platform-banner">
             <div className="platform-banner-left">
               <h2>Secured by the<br/>Sudarshana Platform</h2>
-              <p>Use our multi-layered engine to detect conversation hijacking, enforce protocol trust, and lock thread integrity â€” in real time.</p>
+              <p>Use our multi-layered engine to detect conversation hijacking, enforce protocol trust, and lock thread integrity  in real time.</p>
               <div className="platform-banner-actions">
                 <button className="btn-white-pill" onClick={scrollToEmail}>
                   <span>Explore the platform</span>
@@ -3016,7 +3016,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="platform-banner-right">
-              {/* decorative SVG: globe (global reach / network) â€” animated rotation */}
+              {/* decorative SVG: globe (global reach / network)  animated rotation */}
               <style>{`
                 @keyframes tg-globe-spin-ellipse {
                   0%   { transform: scaleX(1); }
@@ -3529,7 +3529,7 @@ export default function LandingPage() {
                   <span className="new-footer-brand-name">Sudarshana</span>
                 </div>
                 <p className="new-footer-desc">
-                  Sudarshana empowers security teams to prevent hijacks and secure conversations â€” making threat visibility clear, understandable, and actionable.
+                  Sudarshana empowers security teams to prevent hijacks and secure conversations by making threat visibility clear, understandable, and actionable.
                 </p>
               </div>
               
