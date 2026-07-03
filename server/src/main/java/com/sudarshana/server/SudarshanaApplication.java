@@ -19,12 +19,21 @@ public class SudarshanaApplication {
     }
 
     private static void loadEnvFile() {
-        Path envPath = Paths.get(".env");
-        if (!Files.exists(envPath)) {
-            envPath = Paths.get("../.env");
+        Path currentDir = Paths.get(".").toAbsolutePath().normalize();
+        Path envPath = null;
+        for (int i = 0; i < 4; i++) {
+            Path candidate = currentDir.resolve(".env");
+            if (Files.exists(candidate)) {
+                envPath = candidate;
+                break;
+            }
+            currentDir = currentDir.getParent();
+            if (currentDir == null) {
+                break;
+            }
         }
 
-        if (Files.exists(envPath)) {
+        if (envPath != null && Files.exists(envPath)) {
             try {
                 List<String> lines = Files.readAllLines(envPath);
                 for (String line : lines) {

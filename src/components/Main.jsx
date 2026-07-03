@@ -630,8 +630,25 @@ export default function LandingPage() {
     }
   };
 
-  const handleGoogleOAuth = () => {
-    if (!googleClientId || googleClientId === 'your-client-id') {
+  const handleGoogleOAuth = async () => {
+    let currentClientId = googleClientId;
+    
+    if (!currentClientId || currentClientId === 'your-client-id') {
+      try {
+        const res = await fetch('/api/auth/config');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.clientId) {
+            currentClientId = data.clientId;
+            setGoogleClientId(data.clientId);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch auth config on-demand:", err);
+      }
+    }
+
+    if (!currentClientId || currentClientId === 'your-client-id') {
       alert(
         'Google Client ID is not configured on the backend. Please define GOOGLE_CLIENT_ID in your application environment or application.yml.'
       );

@@ -27,6 +27,9 @@ public class SudarshanaService {
     private final Set<String> blacklistedDomains = java.util.concurrent.ConcurrentHashMap.newKeySet();
 
     @Autowired
+    private org.springframework.core.env.Environment env;
+
+    @Autowired
     public SudarshanaService(CryptographyService cryptographyService, 
                               NlpAnalysisService nlpAnalysisService,
                               EmailMessageRepository emailMessageRepository,
@@ -63,8 +66,12 @@ public class SudarshanaService {
         }
 
         // Skip demo data seeding unless SEED_DEMO_DATA=true (set this only in dev/staging).
-        // In production, leave SEED_DEMO_DATA unset or set it to "false".
-        String seedDemo = System.getenv().getOrDefault("SEED_DEMO_DATA", "true");
+        // In production, default SEED_DEMO_DATA to false unless explicitly set to "true".
+        String activeProfile = env != null && env.getActiveProfiles().length > 0 
+                ? env.getActiveProfiles()[0] 
+                : "h2";
+        String defaultSeed = "h2".equalsIgnoreCase(activeProfile) ? "true" : "false";
+        String seedDemo = System.getenv().getOrDefault("SEED_DEMO_DATA", defaultSeed);
         if (!"true".equalsIgnoreCase(seedDemo)) {
             return;
         }

@@ -31,8 +31,9 @@ describe('LandingPage', () => {
     expect(elements.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders without crashing', () => {
+  it('renders without crashing', async () => {
     const { container } = renderLanding();
     expect(container).toBeInTheDocument();
+    await screen.findAllByText('Sudarshana');
   });
 });
