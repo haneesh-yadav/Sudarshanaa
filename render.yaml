@@ -10,10 +10,26 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: postgres
-      - key: DATABASE_URL
+      - key: DB_HOST
         fromDatabase:
           name: sudarshana-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: sudarshana-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: sudarshana-db
+          property: database
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: sudarshana-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: sudarshana-db
+          property: password
       - key: SUDARSHANA_JWT_SECRET
         generateValue: true
       - key: SUDARSHANA_ENCRYPTION_KEY
