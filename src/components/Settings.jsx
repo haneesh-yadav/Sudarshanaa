@@ -1037,13 +1037,13 @@ export default function SettingsPage({ open, onClose }) {
           flex-shrink: 0;
           background: var(--panel-2, #141414);
           border-right: 1px solid var(--border, rgba(255,255,255,0.08));
-          padding: 20px 0;
+          padding: 0 0 20px;
           display: flex;
           flex-direction: column;
           overflow-y: auto;
         }
         .sp-sidebar-header {
-          padding: 0 16px 18px;
+          padding: 24px 16px 18px;
         }
         .sp-sidebar-search-wrap {
           position: relative;
