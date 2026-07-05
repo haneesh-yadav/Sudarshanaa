@@ -1,5 +1,9 @@
 server:
   port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/json,application/xml,text/html,text/plain,text/css
 
 google:
   oauth2:
@@ -24,6 +28,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  h2:
+    console:
+      enabled: false  # Off by default; explicitly enabled only in the h2 dev profile below
 
 ---
 # ── Development (H2) ──

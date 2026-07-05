@@ -62,3 +62,6 @@ replit.md
 *.db
 *.mv.db
 *.trace.db
+
+# Debug / error log captures
+errorlogs.md

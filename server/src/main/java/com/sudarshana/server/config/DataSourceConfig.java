@@ -2,6 +2,8 @@ package com.sudarshana.server.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import java.net.URISyntaxException;
 @Configuration
 @Conditional(DataSourceConfig.DatabaseRequired.class)
 public class DataSourceConfig {
+
+    private static final Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
 
     static class DatabaseRequired implements org.springframework.context.annotation.Condition {
         @Override
@@ -58,9 +62,9 @@ public class DataSourceConfig {
                     if (query != null && !query.isEmpty()) {
                         url += "?" + query;
                     }
-                    System.out.println("[Sudarshana] DataSource: Parsed postgres/postgresql DATABASE_URL successfully.");
+                    logger.info("DataSource: Parsed postgres/postgresql DATABASE_URL successfully.");
                 } catch (URISyntaxException e) {
-                    System.err.println("[Sudarshana] Error parsing DATABASE_URL: " + e.getMessage());
+                    logger.error("Error parsing DATABASE_URL: {}", e.getMessage());
                     // fallback to prepend jdbc:
                     url = "jdbc:" + databaseUrl;
                 }
@@ -73,7 +77,7 @@ public class DataSourceConfig {
                 username = env.getProperty("SPRING_DATASOURCE_USERNAME", env.getProperty("DATABASE_USERNAME", ""));
                 password = env.getProperty("SPRING_DATASOURCE_PASSWORD", env.getProperty("DATABASE_PASSWORD", ""));
             }
-            System.out.println("[Sudarshana] DataSource: using DATABASE_URL");
+            logger.info("DataSource: using DATABASE_URL");
         } else {
             String host = env.getProperty("DB_HOST");
             String port = env.getProperty("DB_PORT", "5432");
@@ -81,7 +85,7 @@ public class DataSourceConfig {
             url = "jdbc:postgresql://" + host + ":" + port + "/" + name;
             username = env.getProperty("SPRING_DATASOURCE_USERNAME", "");
             password = env.getProperty("SPRING_DATASOURCE_PASSWORD", "");
-            System.out.println("[Sudarshana] DataSource: using DB_HOST=" + host);
+            logger.info("DataSource: using DB_HOST={}", host);
         }
 
         HikariConfig config = new HikariConfig();

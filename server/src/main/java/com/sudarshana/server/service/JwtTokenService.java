@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.Base64;
 
 @Service
@@ -62,10 +63,11 @@ public class JwtTokenService {
 
         try {
             String payload = parts[0] + "." + parts[1];
-            String expectedSignature = calculateHmac(payload);
-            String actualSignature = parts[2];
+            byte[] expectedSigBytes = calculateHmacBytes(payload);
+            byte[] actualSigBytes = Base64.getUrlDecoder().decode(parts[2]);
 
-            if (!expectedSignature.equals(actualSignature)) {
+            // Constant-time comparison prevents timing attacks
+            if (!MessageDigest.isEqual(expectedSigBytes, actualSigBytes)) {
                 logger.warn("Token signature verification failed");
                 return null;
             }
@@ -88,12 +90,15 @@ public class JwtTokenService {
         }
     }
 
-    private String calculateHmac(String data) throws Exception {
+    private byte[] calculateHmacBytes(String data) throws Exception {
         Mac sha256Hmac = Mac.getInstance(HMAC_ALGORITHM);
         SecretKeySpec secretKey = new SecretKeySpec(jwtSecret.getBytes(StandardCharsets.UTF_8), HMAC_ALGORITHM);
         sha256Hmac.init(secretKey);
-        byte[] hmacBytes = sha256Hmac.doFinal(data.getBytes(StandardCharsets.UTF_8));
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(hmacBytes);
+        return sha256Hmac.doFinal(data.getBytes(StandardCharsets.UTF_8));
+    }
+
+    private String calculateHmac(String data) throws Exception {
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(calculateHmacBytes(data));
     }
 }
 
