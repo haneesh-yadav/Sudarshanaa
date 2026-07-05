@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: sudarshana-server
+    name: sudarshanaa-server
     runtime: docker
     region: oregon
     plan: free
