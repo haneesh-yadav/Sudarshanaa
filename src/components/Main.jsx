@@ -2723,7 +2723,7 @@ export default function LandingPage() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                     <button type="submit" className="hero-email-btn" style={{ border: 'none', cursor: 'pointer', width: '100%' }} disabled={checkingEmail}>
-                      {checkingEmail ? 'Checking' : 'Continue with email'}
+                      {checkingEmail ? 'Checking!' : 'Continue with email'}
                     </button>
                   </form>
                 ) : (
