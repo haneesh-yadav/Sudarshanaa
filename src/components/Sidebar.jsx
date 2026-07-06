@@ -252,10 +252,10 @@ export default function Sidebar({ active }) {
         <div className="sidebar-logo-row">
           <div className="sidebar-logo" aria-hidden="true">
             <span className="tgh-brand-mark">
-              <img src="/Sudarshanaaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '9px' }} />
+              <img src="/Sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '9px' }} />
             </span>
           </div>
-          <span className="sidebar-wordmark">Sudarshanaaa</span>
+          <span className="sidebar-wordmark">Sudarshanaa</span>
         </div>
 
         <nav className="sidebar-nav" aria-label="Main">

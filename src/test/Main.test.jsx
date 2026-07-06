@@ -27,13 +27,13 @@ describe('LandingPage', () => {
 
   it('renders brand name', async () => {
     renderLanding();
-    const elements = await screen.findAllByText('Sudarshanaaa');
+    const elements = await screen.findAllByText('Sudarshanaa');
     expect(elements.length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders without crashing', async () => {
     const { container } = renderLanding();
     expect(container).toBeInTheDocument();
-    await screen.findAllByText('Sudarshanaaa');
+    await screen.findAllByText('Sudarshanaa');
   });
 });

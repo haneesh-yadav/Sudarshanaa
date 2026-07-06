@@ -64,14 +64,14 @@ SEED_DEMO_DATA=true
 ## Project Structure
 
 ```
-Sudarshanaaa/
+Sudarshanaa/
   src/                    # React frontend
     auth/                 # Authentication context & guards
     components/           # UI components (Sidebar, Topbar, Settings, Toast)
     pages/                # Dashboard pages (Home, Threads, Reports, AuditLogs, SecurityPosture)
     utils/                # Shared utilities
   server/                 # Spring Boot backend
-    src/main/java/com/Sudarshanaaa/server/
+    src/main/java/com/Sudarshanaa/server/
       config/             # Security, CORS, JWT filter
       controller/         # REST API endpoints
       model/              # JPA entities

@@ -19,7 +19,7 @@ describe('App', () => {
 
   it('renders the landing page at /', () => {
     render(React.createElement(App));
-    const elements = screen.getAllByText('Sudarshanaaa');
+    const elements = screen.getAllByText('Sudarshanaa');
     expect(elements.length).toBeGreaterThanOrEqual(1);
   });
 });
