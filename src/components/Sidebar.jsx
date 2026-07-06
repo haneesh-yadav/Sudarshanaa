@@ -255,7 +255,7 @@ export default function Sidebar({ active }) {
               <img src="/sudarshana.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '9px' }} />
             </span>
           </div>
-          <span className="sidebar-wordmark">Sudarshanaa</span>
+          <span className="sidebar-wordmark">Sudarshana</span>
         </div>
 
         <nav className="sidebar-nav" aria-label="Main">
