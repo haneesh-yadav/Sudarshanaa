@@ -410,7 +410,7 @@ function DeleteAccountModal({ onConfirm, onCancel }) {
           <div className="da-actions">
             <button type="button" className="da-btn-cancel" onClick={onCancel} disabled={loading}>Cancel</button>
             <button type="submit" className="da-btn-danger" disabled={loading}>
-              {loading ? 'Deletingâ€¦' : 'Delete Account'}
+              {loading ? 'Deleting' : 'Delete Account'}
             </button>
           </div>
         </form>
@@ -747,7 +747,7 @@ function ImapTestModal({ onClose }) {
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginTop: 4 }}>
           <button className="sp-btn-ghost sm" onClick={onClose}>Cancel</button>
           <button className="sp-btn-accent" onClick={test} disabled={status === "loading"} style={{ minWidth: 120 }}>
-            {status === "loading" ? "Testingâ€¦" : "Test Connection"}
+            {status === "loading" ? "Testing" : "Test Connection"}
           </button>
         </div>
       </div>
