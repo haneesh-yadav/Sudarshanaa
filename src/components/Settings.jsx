@@ -781,7 +781,7 @@ function ConnectorsTab({ settings, onUpdate }) {
 
       <div className="sp-section-header" style={{ marginBottom: 4 }}>
         <h2 className="sp-section-title">Active Connectors</h2>
-        <p className="sp-section-desc">Integrations that are live and syncing with Sudarshana.</p>
+        <p className="sp-section-desc">Integrations that are live and syncing with Sudarshanaaa.</p>
       </div>
 
       <div className="sp-table" style={{ marginBottom: 24 }}>
@@ -857,9 +857,9 @@ function ConnectorsTab({ settings, onUpdate }) {
    ============================================================ */
 function PluginsTab() {
   const plugins = [
-    { name: "Sudarshana NLP Pack",   author: "Sudarshana Labs", skills: "Social engineering, urgency detection, BEC patterns", updated: "Jun 2025", enabled: true  },
-    { name: "GeoIP Risk Engine",      author: "Sudarshana Labs", skills: "IP geolocation, ASN reputation, VPN/proxy detection",  updated: "May 2025", enabled: true  },
-    { name: "YARA Rule Engine",       author: "Sudarshana Labs", skills: "Attachment pattern matching, malware signatures",       updated: "Apr 2025", enabled: true  },
+    { name: "Sudarshanaaa NLP Pack",   author: "Sudarshanaaa Labs", skills: "Social engineering, urgency detection, BEC patterns", updated: "Jun 2025", enabled: true  },
+    { name: "GeoIP Risk Engine",      author: "Sudarshanaaa Labs", skills: "IP geolocation, ASN reputation, VPN/proxy detection",  updated: "May 2025", enabled: true  },
+    { name: "YARA Rule Engine",       author: "Sudarshanaaa Labs", skills: "Attachment pattern matching, malware signatures",       updated: "Apr 2025", enabled: true  },
     { name: "SPF/DKIM Strict Mode",   author: "Community",       skills: "Header forgery detection, alignment enforcement",       updated: "Mar 2025", enabled: false },
   ];
 

@@ -698,7 +698,7 @@ function SendersTab({ threads }) {
         if (!existing) {
           existing = {
             name: senderName || senderEmail,
-            role: senderEmail.includes("internal") || senderEmail.includes("company.com") || senderEmail.includes("Sudarshana.io") ? "SOC Analyst" : "External contact",
+            role: senderEmail.includes("internal") || senderEmail.includes("company.com") || senderEmail.includes("Sudarshanaa.io") ? "SOC Analyst" : "External contact",
             domain: t.domain,
             email: senderEmail,
             baseline: t.trust,

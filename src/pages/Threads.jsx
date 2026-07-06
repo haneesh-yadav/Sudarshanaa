@@ -778,7 +778,7 @@ function HijackScenarioModal({ pending, onExecute, onCancel }) {
         </div>
         <div className="modal-body" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <p style={{ fontSize: 12.5, color: "var(--text-dimmer)", margin: "0 0 4px 0", lineHeight: 1.5 }}>
-            Choose a red-team scenario to inject into this message. Sudarshana will detect the
+            Choose a red-team scenario to inject into this message. Sudarshanaaa will detect the
             tampered content and break the cryptographic chain.
           </p>
           {scenarios.map(s => (
@@ -1238,7 +1238,7 @@ export default function ThreadsPage() {
         body: JSON.stringify({ messageId, body: scenarioBody })
       });
       if (response.ok) {
-        showToast("Hijack injected. Sudarshana is re-evaluating the cryptographic chain.", "warning");
+        showToast("Hijack injected. Sudarshanaaa is re-evaluating the cryptographic chain.", "warning");
         await fetchThreads(threadId);
       } else {
         showToast("Hijack failed â€” message not found in this thread.", "error");
@@ -1281,7 +1281,7 @@ export default function ThreadsPage() {
     try {
       const lastMsg = selected?.rawReport?.messages[selected.rawReport.messages.length - 1];
       const payload = {
-        sender: "ops@internal.Sudarshana.io",
+        sender: "ops@internal.Sudarshanaaa.io",
         recipient: lastMsg ? lastMsg.sender : "external",
         subject: selected?.subject || "Re: Thread",
         body: replyText,
@@ -1289,7 +1289,7 @@ export default function ThreadsPage() {
         dkimAligned: true,
         dmarcAligned: true,
         senderIp: "192.168.1.1",
-        returnPath: "ops@internal.Sudarshana.io"
+        returnPath: "ops@internal.Sudarshanaaa.io"
       };
       const userId = localStorage.getItem("selectedUserId") || "";
       const url = `/api/threads/${threadId}/messages${userId ? `?userId=${userId}` : ""}`;
@@ -2270,7 +2270,7 @@ export default function ThreadsPage() {
           onLaunchSandbox={async (link) => {
             setSandboxLink(link);
             try {
-              const userEmail = localStorage.getItem("userEmail") || "demo@sudarshana.com";
+              const userEmail = localStorage.getItem("userEmail") || "demo@Sudarshanaaa.com";
               await fetch("/api/audit-logs", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

@@ -1,4 +1,4 @@
-# Sudarshana
+# Sudarshanaa
 
 A full-stack email security platform that uses cryptographic hash chains, NLP-based threat detection, and email authentication analysis (SPF/DKIM/DMARC) to detect tampering, phishing, and social engineering attacks in email threads.
 
@@ -64,14 +64,14 @@ SEED_DEMO_DATA=true
 ## Project Structure
 
 ```
-sudarshana/
+Sudarshanaaa/
   src/                    # React frontend
     auth/                 # Authentication context & guards
     components/           # UI components (Sidebar, Topbar, Settings, Toast)
     pages/                # Dashboard pages (Home, Threads, Reports, AuditLogs, SecurityPosture)
     utils/                # Shared utilities
   server/                 # Spring Boot backend
-    src/main/java/com/sudarshana/server/
+    src/main/java/com/Sudarshanaaa/server/
       config/             # Security, CORS, JWT filter
       controller/         # REST API endpoints
       model/              # JPA entities

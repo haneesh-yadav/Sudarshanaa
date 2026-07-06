@@ -27,8 +27,8 @@ const LAYERS = [
 ];
 
 const FAQS = [
-  { q: "How is this different from a Secure Email Gateway?", a: "SEGs scan for malicious links and attachments. Sudarshana inspects the systemic context of a conversation  behavior, protocol alignment, and historical lineage  catching hijacks that look like ordinary text." },
-  { q: "Does it require changes to our mail infrastructure?", a: "No. Sudarshana deploys as a cloud-native API integration with Microsoft 365 and Google Workspace, sitting alongside your existing stack." },
+  { q: "How is this different from a Secure Email Gateway?", a: "SEGs scan for malicious links and attachments. Sudarshanaaa inspects the systemic context of a conversation  behavior, protocol alignment, and historical lineage  catching hijacks that look like ordinary text." },
+  { q: "Does it require changes to our mail infrastructure?", a: "No. Sudarshanaaa deploys as a cloud-native API integration with Microsoft 365 and Google Workspace, sitting alongside your existing stack." },
   { q: "What happens when the cryptographic chain breaks?", a: "A break in the SHA-256 cascade triggers an immediate alert to the SOC queue, before any action is taken on the thread." },
 ];
 
@@ -373,7 +373,7 @@ const HEADER_CSS = `
   }
 `;
 
-function LandingHeader({ onTrySudarshana, onScrollToSection }) {
+function LandingHeader({ onTrySudarshanaaa, onScrollToSection }) {
   const location  = useLocation();
   const navigate  = useNavigate();
   const menuRef   = useRef(null);
@@ -425,9 +425,9 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
         {/* â”€â”€ Brand  left â”€â”€ */}
         <Link to="/" className="tgh-brand">
           <span className="tgh-brand-mark">
-            <img src="sudarshana.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+            <img src="Sudarshanaaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
           </span>
-          <span className="tgh-brand-name">Sudarshana</span>
+          <span className="tgh-brand-name">Sudarshanaaa</span>
         </Link>
 
         {/* â”€â”€ Centre nav  hidden on login/signup â”€â”€ */}
@@ -459,8 +459,8 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
           ) : (
             /* Landing page: Contact sales + Try Claude */
             <>
-              <button className="tgh-btn-primary" onClick={onTrySudarshana}>
-                Try Sudarshana
+              <button className="tgh-btn-primary" onClick={onTrySudarshanaaa}>
+                Try Sudarshanaaa
               </button>
             </>
           )}
@@ -500,8 +500,8 @@ function LandingHeader({ onTrySudarshana, onScrollToSection }) {
                   </button>
                 ) : (
                   <>
-                    <button className="tgh-mobile-btn-filled" onClick={() => { onTrySudarshana(); setMobileOpen(false); }}>
-                      Try Sudarshana
+                    <button className="tgh-mobile-btn-filled" onClick={() => { onTrySudarshanaaa(); setMobileOpen(false); }}>
+                      Try Sudarshanaaa
                     </button>
                   </>
                 )}
@@ -2675,7 +2675,7 @@ export default function LandingPage() {
         ::selection{ background: var(--accent-dim, rgba(255,255,255,0.12)); }
       `}</style>
 
-      <LandingHeader onTrySudarshana={scrollToEmail} onScrollToSection={scrollToSection} />
+      <LandingHeader onTrySudarshanaaa={scrollToEmail} onScrollToSection={scrollToSection} />
 
 
       {/* ---------- hero ---------- */}
@@ -2686,7 +2686,7 @@ export default function LandingPage() {
             {/* Left: headline + copy + CTAs */}
             <div className="hero-left">
               <h1>Spot Fast.<br/>Stop Faster.</h1>
-              <p className="lead">Detect & neutralise threats in Sudarshana</p>
+              <p className="lead">Detect & neutralise threats in Sudarshanaaa</p>
               {/* Sign-in box */}
               <div className="hero-signin-box">
                 <button onClick={handleGoogleOAuth} className="hero-google-btn" style={{ width: '100%' }}>
@@ -2805,7 +2805,7 @@ export default function LandingPage() {
                   <span className="hero-mock-dot" style={{background:"#ef6a5f"}} />
                   <span className="hero-mock-dot" style={{background:"#f5a64d"}} />
                   <span className="hero-mock-dot" style={{background:"#74e08a"}} />
-                  <span className="hero-mock-title">Sudarshana</span>
+                  <span className="hero-mock-title">Sudarshanaaa</span>
                   <span className="hero-mock-live">
                     <span className="hero-mock-live-dot" /> LIVE
                   </span>
@@ -2961,7 +2961,7 @@ export default function LandingPage() {
             </div>
             <div className="problem-right-content">
               <p>
-                SEGs scan for links and attachments. They miss attacks that consist purely of normal-looking text riding on existing trust. Deploy Sudarshana alongside your existing stack to close the security gap and protect thread integrity.
+                SEGs scan for links and attachments. They miss attacks that consist purely of normal-looking text riding on existing trust. Deploy Sudarshanaaa alongside your existing stack to close the security gap and protect thread integrity.
               </p>
             </div>
           </div>
@@ -3018,7 +3018,7 @@ export default function LandingPage() {
           {/* Top banner row */}
           <div className="platform-banner">
             <div className="platform-banner-left">
-              <h2>Secured by the<br/>Sudarshana Platform</h2>
+              <h2>Secured by the<br/>Sudarshanaaa Platform</h2>
               <p>Use our multi-layered engine to detect conversation hijacking, enforce protocol trust, and lock thread integrity  in real time.</p>
               <div className="platform-banner-actions">
                 <button className="btn-white-pill" onClick={scrollToEmail}>
@@ -3200,7 +3200,7 @@ export default function LandingPage() {
                   <span>01. Relational NLP analysis</span>
                 </div>
                 <div className="how-step-desc">
-                  Sudarshana analyzes conversational context, relation histories, and behavior shifts to detect relational abnormalities and spoofing.
+                  Sudarshanaaa analyzes conversational context, relation histories, and behavior shifts to detect relational abnormalities and spoofing.
                 </div>
               </div>
 
@@ -3255,10 +3255,10 @@ export default function LandingPage() {
                 <line x1="70%" y1="28%" x2="66%" y2="12%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
               </svg>
 
-              {/* Center Sudarshana Node */}
+              {/* Center Sudarshanaaa Node */}
               <div className="map-center">
-                <img src="sudarshana.png" alt="logo" />
-                <span className="map-center-text">Sudarshana</span>
+                <img src="Sudarshanaaa.png" alt="logo" />
+                <span className="map-center-text">Sudarshanaaa</span>
               </div>
 
               {/* Categories */}
@@ -3498,7 +3498,7 @@ export default function LandingPage() {
               
             </div>
             <div className="integrations-right">
-              <h2>Sudarshana connects to your security ecosystem</h2>
+              <h2>Sudarshanaaa connects to your security ecosystem</h2>
               <p>Linguistic anomalies, transport protocols, and active mail sync, all in one place.</p>
             </div>
           </div>
@@ -3542,11 +3542,11 @@ export default function LandingPage() {
             <div className="new-footer-grid">
               <div className="new-footer-left">
                 <div className="new-footer-brand">
-                  <img src="sudarshana.png" alt="Sudarshana Logo" className="new-footer-logo" />
-                  <span className="new-footer-brand-name">Sudarshana</span>
+                  <img src="Sudarshanaaa.png" alt="Sudarshanaaa Logo" className="new-footer-logo" />
+                  <span className="new-footer-brand-name">Sudarshanaaa</span>
                 </div>
                 <p className="new-footer-desc">
-                  Sudarshana empowers security teams to prevent hijacks and secure conversations by making threat visibility clear, understandable, and actionable.
+                  Sudarshanaaa empowers security teams to prevent hijacks and secure conversations by making threat visibility clear, understandable, and actionable.
                 </p>
               </div>
               
@@ -3608,10 +3608,10 @@ export default function LandingPage() {
             
             <div className="new-footer-bottom">
               <span className="new-footer-copyright">
-                © 2026 Sudarshana. All rights reserved.
+                © 2026 Sudarshanaaa. All rights reserved.
               </span>
               <div className="new-footer-legal-links">
-                <a className="new-footer-legal-link" >Sudarshana 2026</a>
+                <a className="new-footer-legal-link" >Sudarshanaaa 2026</a>
               </div>
             </div>
             

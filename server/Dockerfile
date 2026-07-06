@@ -10,9 +10,9 @@ RUN mvn -B package -DskipTests
 # ── Runtime Stage ─────────────────────────────────────────────────────────────
 FROM eclipse-temurin:17-jre-jammy
 
-LABEL org.opencontainers.image.title="sudarshana-server" \
-      org.opencontainers.image.description="Sudarshana backend — Spring Boot 3 / Java 17" \
-      org.opencontainers.image.vendor="sudarshana"
+LABEL org.opencontainers.image.title="Sudarshanaaa-server" \
+      org.opencontainers.image.description="Sudarshanaaa backend — Spring Boot 3 / Java 17" \
+      org.opencontainers.image.vendor="Sudarshanaaa"
 
 WORKDIR /app
 
