@@ -373,7 +373,7 @@ const HEADER_CSS = `
   }
 `;
 
-function LandingHeader({ onTrySudarshanaa, onScrollToSection }) {
+function LandingHeader({ onTrySudarshana, onScrollToSection }) {
   const location  = useLocation();
   const navigate  = useNavigate();
   const menuRef   = useRef(null);
@@ -425,7 +425,7 @@ function LandingHeader({ onTrySudarshanaa, onScrollToSection }) {
         {/* â”€â”€ Brand  left â”€â”€ */}
         <Link to="/" className="tgh-brand">
           <span className="tgh-brand-mark">
-            <img src="Sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+            <img src="Sudarshana.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
           </span>
           <span className="tgh-brand-name">Sudarshanaa</span>
         </Link>
@@ -459,7 +459,7 @@ function LandingHeader({ onTrySudarshanaa, onScrollToSection }) {
           ) : (
             /* Landing page: Contact sales + Try Claude */
             <>
-              <button className="tgh-btn-primary" onClick={onTrySudarshanaa}>
+              <button className="tgh-btn-primary" onClick={onTrySudarshana}>
                 Try Sudarshanaa
               </button>
             </>
@@ -500,7 +500,7 @@ function LandingHeader({ onTrySudarshanaa, onScrollToSection }) {
                   </button>
                 ) : (
                   <>
-                    <button className="tgh-mobile-btn-filled" onClick={() => { onTrySudarshanaa(); setMobileOpen(false); }}>
+                    <button className="tgh-mobile-btn-filled" onClick={() => { onTrySudarshana(); setMobileOpen(false); }}>
                       Try Sudarshanaa
                     </button>
                   </>
@@ -2675,7 +2675,7 @@ export default function LandingPage() {
         ::selection{ background: var(--accent-dim, rgba(255,255,255,0.12)); }
       `}</style>
 
-      <LandingHeader onTrySudarshanaa={scrollToEmail} onScrollToSection={scrollToSection} />
+      <LandingHeader onTrySudarshana={scrollToEmail} onScrollToSection={scrollToSection} />
 
 
       {/* ---------- hero ---------- */}
@@ -3255,9 +3255,9 @@ export default function LandingPage() {
                 <line x1="70%" y1="28%" x2="66%" y2="12%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
               </svg>
 
-              {/* Center Sudarshanaa Node */}
+              {/* Center Sudarshana Node */}
               <div className="map-center">
-                <img src="Sudarshanaa.png" alt="logo" />
+                <img src="Sudarshana.png" alt="logo" />
                 <span className="map-center-text">Sudarshanaa</span>
               </div>
 
@@ -3542,7 +3542,7 @@ export default function LandingPage() {
             <div className="new-footer-grid">
               <div className="new-footer-left">
                 <div className="new-footer-brand">
-                  <img src="Sudarshanaa.png" alt="Sudarshanaa Logo" className="new-footer-logo" />
+                  <img src="Sudarshana.png" alt="Sudarshana Logo" className="new-footer-logo" />
                   <span className="new-footer-brand-name">Sudarshanaa</span>
                 </div>
                 <p className="new-footer-desc">
