@@ -252,7 +252,7 @@ export default function Sidebar({ active }) {
         <div className="sidebar-logo-row">
           <div className="sidebar-logo" aria-hidden="true">
             <span className="tgh-brand-mark">
-              <img src="/Sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '9px' }} />
+              <img src="sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '9px' }} />
             </span>
           </div>
           <span className="sidebar-wordmark">Sudarshanaa</span>

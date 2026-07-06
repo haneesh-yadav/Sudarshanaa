@@ -425,7 +425,7 @@ function LandingHeader({ onTrySudarshanaa, onScrollToSection }) {
         {/* â”€â”€ Brand  left â”€â”€ */}
         <Link to="/" className="tgh-brand">
           <span className="tgh-brand-mark">
-            <img src="Sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+            <img src="sudarshanaa.png" alt="logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
           </span>
           <span className="tgh-brand-name">Sudarshanaa</span>
         </Link>
@@ -3257,7 +3257,7 @@ export default function LandingPage() {
 
               {/* Center Sudarshanaa Node */}
               <div className="map-center">
-                <img src="Sudarshanaa.png" alt="logo" />
+                <img src="sudarshanaa.png" alt="logo" />
                 <span className="map-center-text">Sudarshanaa</span>
               </div>
 
@@ -3542,7 +3542,7 @@ export default function LandingPage() {
             <div className="new-footer-grid">
               <div className="new-footer-left">
                 <div className="new-footer-brand">
-                  <img src="Sudarshanaa.png" alt="Sudarshanaa Logo" className="new-footer-logo" />
+                  <img src="sudarshanaa.png" alt="Sudarshanaa Logo" className="new-footer-logo" />
                   <span className="new-footer-brand-name">Sudarshanaa</span>
                 </div>
                 <p className="new-footer-desc">
