@@ -2904,7 +2904,7 @@ export default function LandingPage() {
 
                     <div className="hero-mock-thread-msgs">
                       {[
-                        { text: <><b>Vinnet Yadav</b> opened thread  baseline tone established</>, bad: false, delay: 2.2 },
+                        { text: <><b>Vineet Yadav</b> opened thread  baseline tone established</>, bad: false, delay: 2.2 },
                         { text: <><b>Haneesh Yadav</b> replied  routine approval, protocol normal</>, bad: false, delay: 2.6 },
                         { text: <><b>Unknown sender</b>  wire routing altered, hash mismatch at #3</>, bad: true, delay: 3.0 },
                       ].map((m, i) => (
