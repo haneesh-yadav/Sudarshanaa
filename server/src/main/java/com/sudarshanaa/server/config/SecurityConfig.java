@@ -22,7 +22,7 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Value("${sudarshanaa.security.cors.allowed-origins:http://localhost:5000,http://localhost:5173}")
+    @Value("${sudarshanaa.security.cors.allowed-origins:http://localhost:5000,http://localhost:5173,https://sudarshanaa.vercel.app}")
     private String allowedOrigins;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -71,5 +71,3 @@ public class SecurityConfig {
         return source;
     }
 }
-
-

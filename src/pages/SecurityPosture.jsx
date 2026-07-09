@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
+import { API_BASE } from '../utils/api.js';
 import { showToast } from '../utils/toast';
 
 /* Inline close icon -- doesn't depend on an icon font being loaded,
@@ -250,7 +251,7 @@ function AuthDrawer({ domain, onClose }) {
           }}>View threads</button>
           <button className="btn-primary" onClick={async () => {
             try {
-              const res = await fetch("/api/threads/blacklist", {
+              const res = await fetch(`${API_BASE}/api/threads/blacklist`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ domain: domain.domain }),
@@ -653,7 +654,7 @@ function SenderDrawer({ sender, onClose }) {
           }}>View threads</button>
           <button className="btn-primary" onClick={async () => {
             const senderEmail = sender.email || sender.name;
-            const endpoint = sender.risk === "high" ? "/api/senders/block" : "/api/senders/trust";
+            const endpoint = sender.risk === "high" ? `${API_BASE}/api/senders/block` : `${API_BASE}/api/senders/trust`;
             try {
               const res = await fetch(endpoint, {
                 method: "POST",
@@ -793,7 +794,7 @@ export default function SecurityPosturePage() {
     const fetchPostureData = async () => {
       try {
         const userId = localStorage.getItem("selectedUserId") || "";
-        let url = `/api/threads${userId ? `?userId=${userId}` : ""}`;
+        let url = `${API_BASE}/api/threads${userId ? `?userId=${userId}` : ""}`;
         if (dateRange.days > 0) {
           const startDate = Date.now() - dateRange.days * 24 * 60 * 60 * 1000;
           url += `${userId ? "&" : "?"}startDate=${startDate}`;

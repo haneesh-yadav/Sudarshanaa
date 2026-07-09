@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
+import { API_BASE } from '../utils/api.js';
 import { Link } from 'react-router-dom';
 
 
@@ -226,7 +227,7 @@ export default function Home() {
     const fetchHomeData = async () => {
       try {
         const userId = localStorage.getItem("selectedUserId") || "";
-        let url = `/api/threads${userId ? `?userId=${userId}` : ""}`;
+        let url = `${API_BASE}/api/threads${userId ? `?userId=${userId}` : ""}`;
         if (dateRange.days > 0) {
           const startDate = Date.now() - dateRange.days * 24 * 60 * 60 * 1000;
           url += `${userId ? "&" : "?"}startDate=${startDate}`;
@@ -256,7 +257,7 @@ export default function Home() {
             try {
               const prevStart = Date.now() - dateRange.days * 2 * 24 * 60 * 60 * 1000;
               const prevEnd = Date.now() - dateRange.days * 24 * 60 * 60 * 1000;
-              let prevUrl = `/api/threads${userId ? `?userId=${userId}` : ""}`;
+              let prevUrl = `${API_BASE}/api/threads${userId ? `?userId=${userId}` : ""}`;
               prevUrl += `${userId ? "&" : "?"}startDate=${prevStart}&endDate=${prevEnd}`;
               const prevRes = await fetch(prevUrl);
               if (prevRes.ok) {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE } from '../utils/api.js';
 
 const ACTION_BADGES = {
   DOMAIN_BLACKLIST: { bg: "rgba(245, 158, 11, 0.12)", border: "rgba(245, 158, 11, 0.3)", color: "#f59e0b", icon: "block" },
@@ -53,7 +54,7 @@ export default function AuditLogsPage() {
   const fetchLogs = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/audit-logs");
+      const res = await fetch(`${API_BASE}/api/audit-logs`);
       if (res.ok) {
         const data = await res.json();
         setLogs(data);
@@ -68,7 +69,7 @@ export default function AuditLogsPage() {
   useEffect(() => {
     const cleanup = async () => {
       try {
-        await fetch("/api/audit-logs?action=EMAIL_SYNC", { method: "DELETE" });
+        await fetch(`${API_BASE}/api/audit-logs?action=EMAIL_SYNC`, { method: "DELETE" });
       } catch { /* ignore */ }
     };
     cleanup().then(() => fetchLogs());

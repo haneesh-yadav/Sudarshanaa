@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import mapReportToThread from '../utils/mapReportToThread.js';
+import { API_BASE } from '../utils/api.js';
 import { showToast } from '../utils/toast';
 
 function CloseIcon() {
@@ -907,7 +908,7 @@ export default function ReportsPage() {
     const fetchReportsData = async () => {
       try {
         const userId = localStorage.getItem("selectedUserId") || "";
-        const url = `/api/threads${userId ? `?userId=${userId}` : ""}`;
+        const url = `${API_BASE}/api/threads${userId ? `?userId=${userId}` : ""}`;
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
@@ -921,7 +922,7 @@ export default function ReportsPage() {
 
     const fetchSavedReports = async () => {
       try {
-        const res = await fetch("/api/reports");
+        const res = await fetch(`${API_BASE}/api/reports`);
         if (res.ok) {
           const data = await res.json();
           setReportsList(data.map(r => ({
@@ -1069,7 +1070,7 @@ export default function ReportsPage() {
     };
 
     try {
-      const res = await fetch("/api/reports", {
+      const res = await fetch(`${API_BASE}/api/reports`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newReport),

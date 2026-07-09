@@ -3,6 +3,8 @@ import mapReportToThread from '../utils/mapReportToThread.js';
 import { createPortal } from 'react-dom';
 import { showToast } from '../utils/toast.js';
 
+import { API_BASE } from '../utils/api.js';
+
 /* Inline close icon -- doesn't depend on an icon font being loaded,
    so it always renders instead of going blank inside drawers/modals. */
 function CloseIcon() {
@@ -422,7 +424,7 @@ function ThreadDrawer({ thread, onClose, onHijack, onSendReply, replyText, setRe
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       try {
-        const res = await fetch("/api/dlp/scan", {
+        const res = await fetch(`${API_BASE}/api/dlp/scan`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: replyText }),
@@ -743,7 +745,7 @@ function HijackScenarioModal({ pending, onExecute, onCancel }) {
     if (!pending) return;
     const fetchScenarios = async () => {
       try {
-        const res = await fetch("/api/threads/hijack-scenarios");
+        const res = await fetch(`${API_BASE}/api/threads/hijack-scenarios`);
         if (res.ok) {
           const data = await res.json();
           setScenarios(data.map(s => ({
@@ -1183,7 +1185,7 @@ export default function ThreadsPage() {
       } catch { /* ignore */ }
 
       const userId = localStorage.getItem("selectedUserId") || "";
-      const url = `/api/threads/blacklist${userId ? `?userId=${userId}` : ""}`;
+      const url = `${API_BASE}/api/threads/blacklist${userId ? `?userId=${userId}` : ""}`;
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1205,7 +1207,7 @@ export default function ThreadsPage() {
   const fetchThreads = async (updateSelectedId = null) => {
     try {
       const userId = localStorage.getItem("selectedUserId") || "";
-      const url = `/api/threads${userId ? `?userId=${userId}` : ""}`;
+      const url = `${API_BASE}/api/threads${userId ? `?userId=${userId}` : ""}`;
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
@@ -1231,7 +1233,7 @@ export default function ThreadsPage() {
     setPendingHijack(null);
     try {
       const userId = localStorage.getItem("selectedUserId") || "";
-      const url = `/api/threads/${threadId}/hijack${userId ? `?userId=${userId}` : ""}`;
+      const url = `${API_BASE}/api/threads/${threadId}/hijack${userId ? `?userId=${userId}` : ""}`;
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1256,7 +1258,7 @@ export default function ThreadsPage() {
       const isLowTrust = selected.status !== "Verified" || selected.trust < 75 || selected.chain === "broken";
       if (isLowTrust) {
         try {
-          const dlpRes = await fetch("/api/dlp/scan", {
+          const dlpRes = await fetch(`${API_BASE}/api/dlp/scan`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text: replyText }),
@@ -1292,7 +1294,7 @@ export default function ThreadsPage() {
         returnPath: "ops@internal.Sudarshanaa.io"
       };
       const userId = localStorage.getItem("selectedUserId") || "";
-      const url = `/api/threads/${threadId}/messages${userId ? `?userId=${userId}` : ""}`;
+      const url = `${API_BASE}/api/threads/${threadId}/messages${userId ? `?userId=${userId}` : ""}`;
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -2271,7 +2273,7 @@ export default function ThreadsPage() {
             setSandboxLink(link);
             try {
               const userEmail = localStorage.getItem("userEmail") || "demo@Sudarshanaa.com";
-              await fetch("/api/audit-logs", {
+              await fetch(`${API_BASE}/api/audit-logs`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
