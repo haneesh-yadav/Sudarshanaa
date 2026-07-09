@@ -10,6 +10,7 @@ import com.sudarshanaa.server.repository.EmailMessageRepository;
 import com.sudarshanaa.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import jakarta.annotation.PostConstruct;
@@ -352,6 +353,7 @@ public class SudarshanaaService {
         return getAllReports(null);
     }
 
+    @Transactional(readOnly = true)
     public synchronized List<ThreadSecurityReport> getAllReports(Long userId) {
         List<ThreadSecurityReport> reports = new ArrayList<>();
         List<String> threadIds;
@@ -449,6 +451,7 @@ public class SudarshanaaService {
      * Generates a security report for the entire email thread, performing real-time
      * cascading hash chain integrity checks.
      */
+    @Transactional(readOnly = true)
     public synchronized ThreadSecurityReport generateReport(String threadId, Long userId) {
         List<EmailMessage> messages;
         if (userId != null) {
@@ -1003,6 +1006,3 @@ public class SudarshanaaService {
         }
     }
 }
-
-
-
